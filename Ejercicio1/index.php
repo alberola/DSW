@@ -15,6 +15,6 @@
     echo "kifsdgidf $color"
     ?>
     <br><br>
-    <button><a href="http://localhost/dws/">Volver</a></button>
+    <button><a href="http://localhost/DSW/">Volver</a></button>
 </body>
 </html>

@@ -21,7 +21,6 @@
         Su correo es: " .$correo. ".<br>Y dentro de 5 años tendrá " .($edad+5). " años.<br>La suma de los números introducidos es: ".($numero1+$numero2)."
         <br>La resta de los números introducidos es: ".($numero1-$numero2). "<br>La multiplicación de los números introducidos es: ".($numero1*$numero2).
         "<br>La división de los números introducidos es: ".($numero1/$numero2).".<br>Su sueldo es: ".$sueldo."€.<br>Y su sueldo calculando el IPC es: ".($sueldo+($sueldo*$ipc/100))."€.";
-            
     ?>
     <button><a href="index.html">Volver</a></button>
 </body>

@@ -28,7 +28,7 @@
                 if ($numero2 == 0) {
                     echo "No se puede dividir un número entre 0.";
                 } else {
-                echo "El resultado de la division es : ". $numero1 * $numero2;
+                echo "El resultado de la division es : ". $numero1 / $numero2;
                 }
             break;
             case "resto":
