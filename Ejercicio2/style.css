@@ -1,0 +1,32 @@
+body{
+    background: url(fondo.jpg);
+    display: flex;
+    flex-direction: column;
+}
+h1{
+    color: aliceblue;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-style: oblique;
+    text-shadow: 1px 1px 2px black;
+    text-align: center;
+}
+div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 2%;
+    background-color: white;
+    width: 25%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    height: max-content;
+    font-style: bold;
+    margin-left: 40%;
+    border-radius: 5%;
+    -webkit-border-radius: 5%;
+    -moz-border-radius: 5%;
+    -ms-border-radius: 5%;
+    -o-border-radius: 5%;
+}
+

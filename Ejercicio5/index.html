@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Calculadora Alejandro Alberola</h1>
+    <div>
+        <form action="formulario.php" method="post">
+            <input type="text" name="numero1" placeholder="Numero 1" autocomplete="off"> <br> <br>
+            <input type="text" name="numero2" placeholder="Numero 2" autocomplete="off"> <br> <br>
+            <select name="operacion">
+                <option value="null" selected disabled>Escoge la Operacion.</option>
+                <option value="suma">Suma (+)</option>
+                <option value="resta">Resta (-)</option>
+                <option value="multiplicacion">Multiplicación (*)</option>
+                <option value="division">División (/)</option>
+                <option value="resto">Resto División (%)</option>
+            </select> <br> <br>
+            <input type="submit" value="Enviar" >
+            <input type="reset" value="Reset"> <br> <br> <br>
+            <button><a href="http://localhost/dws/">Volver</a></button>
+        </form>
+    </div>
+</body>
+</html>
