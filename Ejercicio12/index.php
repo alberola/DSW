@@ -21,7 +21,14 @@
                 array('ale','qwerty','usuario')
             );
 
+            for ( $i = 0 ; i < $dates ; $i++){
+                if ($user != $dates[$i][0] && $user != $dates[$i][1]){
 
+                } else {
+                    echo "";
+                }
+            }
+            
 
         ?>     
         <form action="<?php echo htmlspecialchars($_SERVER[" PHP_SELF "]);?>" method="post">
