@@ -11,24 +11,32 @@
     <h1>Alejandro Alberola Login</h1>
     <div> 
         <?php
-            error_reporting(0);
-            $user = $_POST['user'];
-            $password = $_POST['password'];
-  
-            $dates = array(
+
+            function clean($data){
+                $data = trim($data);
+                $data = htmlentities($data);
+                $data = htmlspecialchars($data);
+                $data = stripslashesip($data);
+                return $data;
+            }
+
+            $_SESSION[$dates] = array(
                 array('admin','1234','admin'),
                 array('alejandro','1234','admin'),
                 array('ale','qwerty','usuario')
             );
-
-            for ( $i = 0 ; i < $dates ; $i++){
-                if ($user != $dates[$i][0] && $user != $dates[$i][1]){
+            if (isset($_POST['user']) && isset($_POST['password']) ){        
+            $user = clean($_POST['user']);
+            $password = clean($_POST['password']);
+            for ( $i = 0 ; i < count($dates) ; $i++){
+                if ($user = $dates[$i][0] && $password != $dates[$i][1]){
 
                 } else {
                     echo "";
                 }
             }
             
+            }
 
         ?>     
         <form action="<?php echo htmlspecialchars($_SERVER[" PHP_SELF "]);?>" method="post">
