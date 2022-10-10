@@ -11,30 +11,30 @@
 <body>
     <?php
 
-    function clean($data){
-        $data = trim($data);
-        $data = htmlentities($data);
-        $data = htmlspecialchars($data);
-        $data = stripslashesip($data);
-        return $data;
-    }
+        function clean($data){
+            $data = trim($data);
+            $data = htmlentities($data);
+            $data = htmlspecialchars($data);
+            $data = stripslashesip($data);
+            return $data;
+        }
 
-    $_SESSION["$dates"] = array(
-        array('admin','1234','admin'),
-        array('alejandro','1234','admin'),
-        array('ale','qwerty','usuario')
-    );
-    if (isset($_POST['user']) && isset($_POST['password']) ){        
-        $user = clean($_POST['user']);
-        $password = clean($_POST['password']);
-        for ( $i = 0 ; i < count($dates) ; $i++){
-            if ($user != $dates[$i][0] && $password != $dates[$i][1]){
-                echo "Incorrect log in please register first.";
-            } else {
-                echo "";
+        $_SESSION["$dates"] = array(
+            array('admin','1234','admin'),
+            array('alejandro','1234','admin'),
+            array('ale','qwerty','usuario')
+        );
+        if (isset($_POST['user']) && isset($_POST['password']) ){        
+            $user = clean($_POST['user']);
+            $password = clean($_POST['password']);
+            for ( $i = 0 ; i < count($dates) ; $i++){
+                if ($user != $dates[$i][0] && $password != $dates[$i][1]){
+                    echo "Incorrect log in please register first.";
+                } else {
+                    echo "";
+                }
             }
         }
-    }
     ?>
 
     <form action="">

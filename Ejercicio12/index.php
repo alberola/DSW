@@ -10,16 +10,19 @@
 </head>
 <body>
     <?php
+    if(isset($_POST['submit'])) {
+
 
         function clean($data){
             $data = trim($data);
             $data = htmlentities($data);
             $data = htmlspecialchars($data);
-            $data = stripslashesip($data);
+            $data = stripslashes($data);
             return $data;
         }
 
-        $_SESSION["$dates"] = array(
+        session_start();
+        $_SESSION["dates"] = array(
             array('admin','1234','admin'),
             array('alejandro','1234','admin'),
             array('ale','qwerty','usuario')
@@ -27,22 +30,21 @@
         if (isset($_POST['user']) && isset($_POST['password']) ){        
             $user = clean($_POST['user']);
             $password = clean($_POST['password']);
-            for ( $i = 0 ; i < count($dates) ; $i++){
-                if ($user != $dates[$i][0] && $password != $dates[$i][1]){
-                    echo "Incorrect log in please register first.";
-                } else {
-                    echo "";
+            for ( $i = 0 ; $i < count($_SESSION["dates"]) ; $i++){
+                if ($user == $_SESSION["dates"][$i][0] && $password == $_SESSION["dates"][$i][1]){
+                    echo "<h3>Welcome ". $user . " you are " . $_SESSION["dates"][$i][2]."</h3>";
+                    break;
                 }
             }
         }
-
+    }
     ?> 
     <button class="back"><a href="http://localhost/DSW/">Back</a></button>
-    <form action="">
+    <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
         <h1>Alejandro Alberola Log in</h1>
         <input type="text" placeholder="alejandro" name="user">
         <input type="password" placeholder="1234" name="password">
-        <button>Log in</button>
+        <input type="submit" value="Log in" class="submit" name="submit">
         <p class="link"><a href="register.php">Don't have an account yet?</a></p>
     </form>
 </body>
