@@ -8,14 +8,15 @@
     <title>Document</title>
 </head>
 <body>
+    <?php error_reporting(0);?>
     <button><a href="http://localhost/DSW/">Back</a></button>
-    <form action="post" action="<?php ?>">
+    <form action="post" action="<?php echo $_SERVER['PHP_SELF'];?>" name="submit">
     <h1>Formulario</h1>
     <fieldset>
         <legend>Datos Personales</legend>
         <div>
             <br>
-            Nombre: *<input type="text" name="nombre" autocomplete="off"><br><br>
+            Nombre: *<input type="text" name="nombre" autocomplete="off" value="nombre"> <?php echo reporteErrores($_POST['nombre'],"nombre");?> <br><br>
             Apellidos: *<input type="text" name="apellidos" size="30" autcomplete="off"><br><br>
             Edad: 
             <select name="" id="">
@@ -55,8 +56,29 @@
                 <input type="radio" name="letra"> Color de la letra de la página <br> <br>
                 <textarea name="comentarios" rows="10" cols="40" placeholder="Escribe aquí tus comentarios"></textarea>
             </fieldset>
+            <br><br>
+            <input type="submit" value="Enviar">
+            <input type="reset" value="Borrar">
         </div>
     </fieldset>
     </form>
+    <?php
+        function limpiar($data){
+            $data = trim($data);
+            $data = htmlentities($data);
+            $data = htmlspecialchars($data);
+            $data = stripslashes($data);
+            return $data;
+        }
+
+        function reporteErrores($data, $tipo){
+            if(!isset($data)){
+            } else if (empty(limpiar($date))){
+                echo "<span style = color:red>No ha introducido el ". $tipo ."</span>";
+            }
+        }
+    ?>
+
+
 </body>
 </html>
