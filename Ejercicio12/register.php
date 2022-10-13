@@ -36,7 +36,6 @@
             }
         }
     ?>
-
     <form action="">
         <h1>Register Form</h1>
         <input type="text" placeholder="Insert your user" name="user">
