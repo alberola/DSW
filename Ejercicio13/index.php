@@ -78,24 +78,25 @@
             <fieldset>
                 <legend>Otros Datos</legend>
                 <h4>Aficiones</h4>
-                <input type="checkbox" name="aficiones" id="">Cine 
-                <input type="checkbox" name="aficiones" value="literatura">Literatura
-                <input type="checkbox" name="aficiones" value="tebeos">Tebeos
-                <input type="checkbox" name="aficiones" value="deporte">Deporte
-                <input type="checkbox" name="aficiones" value="musica">Musica
-                <input type="checkbox" name="aficiones" value="television">Televisión
+                <input type="checkbox" name="aficiones[]" value="Cine">Cine 
+                <input type="checkbox" name="aficiones[]" value="Literatura">Literatura
+                <input type="checkbox" name="aficiones[]" value="Tebeos">Tebeos
+                <input type="checkbox" name="aficiones[]" value="Deporte">Deporte
+                <input type="checkbox" name="aficiones[]" value="Musica">Musica
+                <input type="checkbox" name="aficiones[]" value="Televeisión">Televisión
                 <h4>Indique su fruta preferida:</h4>
-                <input type="radio" name="fruta"> Cerezas <br>
-                <input type="radio" name="fruta"> Fresas <br>
-                <input type="radio" name="fruta"> Limón <br>
-                <input type="radio" name="fruta"> Manzana <br>
-                <input type="radio" name="fruta"> Naranja <br>
-                <input type="radio" name="fruta"> Pera
+                <input type="radio" name="fruta" value="cerezas.svg"> Cerezas <br>
+                <input type="radio" name="fruta" value="fresa.svg"> Fresas <br>
+                <input type="radio" name="fruta" value="limon.svg"> Limón <br>
+                <input type="radio" name="fruta" value="manzana.svg"> Manzana <br>
+                <input type="radio" name="fruta" value="naranja.svg"> Naranja <br>
+                <input type="radio" name="fruta" value="pera.svg"> Pera
                 <h4>Cambia estilo de la página:</h4>
-                <input type="radio" name="fondo"> Color del fondo de la página <br>
-                <input type="radio" name="letra"> Color de la letra de la página <br> <br>
+                <input type="radio" name="fondo" value="1"> Color del fondo de la página <br>
+                <input type="radio" name="letra" value="1"> Color de la letra de la página <br> <br>
                 <textarea name="comentarios" rows="10" cols="40" placeholder="Escribe aquí tus comentarios"></textarea>
             </fieldset>
+            <img src="" alt="" >
             <br><br>
             <input type="submit" value="Enviar" name="submit">
             <input type="reset" value="Borrar">
@@ -114,11 +115,18 @@
             $edad = (!empty($_POST['edad'])) ? 'Tu edad es '.$_POST['edad'] . ' años.<br>' : '';
             $peso = (!empty($_POST['peso'])) ? 'Tu peso es '.$_POST['peso'] . ' Kg.<br>' : '';
             $telefono = (!reporteErrores($_POST['telefono'], 'telefeno')) ? 'Tu teléfono es : ' . $_POST['telefono'].'.<br>' : ''; 
-            $pagina = (!empty($_POST['pagina'])) ? 'Tu página es '.$_POST['pagina'] . '.<br>' : '';
-            $correo = (!confirmacionCorreo($_POST['correo'],$_POST['correo2'])) ? 'Tu correo es : '.$_POST['correo'] . '.<br>': '';
-                return $nombre.$apellidos.$edad.$telefono.$pagina.$correo;
-
+            $pagina = (!empty($_POST['pagina'])) ? 'Tu página es '.$_POST['pagina'] . '<br>' : '';
+            $correo = (!confirmacionCorreo($_POST['correo'],$_POST['correo2'])) ? 'Tu correo es : '.$_POST['correo'] . '<br>': '';
+            $spam = ($_POST['spam'] == 1)? 'Desea recibir spam.<br>' : 'No desea recibir spam.<br>';
+            //$aficiones = (!empty($_POST['aficiones'])) ?  'Tus aficiones son ' . foreach($_POST['aficiones'] as $aficion) {$aficion}. ' , ' . '<br>' : '';
+            //Condicional ternario para las frutas jugando con la variable value y metiendo el formato que se desea.
+            $frutas = (!empty($_POST['fruta'])) ? '<img src="'. $_POST['fruta'] . '" width=100px height =100px><br>': '';
+            $fondo = (!empty($_POST['fondo'])) ? '<style> *{ background-color: bisque; }</style>' : '';
+            $letra = (!empty($_POST['letra'])) ? '<style> *{ color: saddlebrown; }</style>' : '';
+            $texto = (!empty($_POST['comentarios'])) ? 'Su comentario es: ' . $_POST['comentarios'] .'.': '';
+                return $nombre.$apellidos.$edad.$telefono.$pagina.$correo.$spam.$aficiones.$frutas.$fondo.$letra.$texto;
         }
+
         echo imprimirDatos();
     }
     ?>
