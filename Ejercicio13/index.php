@@ -9,7 +9,7 @@
 </head>
 <body>
     <?php
-        error_reporting(0);
+        error_reporting(1);
         //Funcion para limpiar los datos que entran por pantalla.
         function limpiar($data){
                 $data = trim($data);
@@ -27,10 +27,10 @@
             }
         }
         //Funcion para comprobar que la direccion de correo que nos entra no son iguales.
-        function confirmacionCorreo($corre,$correo2){
-            if(!isset($corre) && !isset($correo2)){
+        function confirmacionCorreo($correo,$correo2){
+            if(!isset($correo) && !isset($correo2)){
                 return false;
-            } else if ($corre != $correo2){
+            } else if ($correo != $correo2){
                 return true;
             }
         }
@@ -106,6 +106,7 @@
     <?php
     if ($_SERVER['REQUEST_METHOD'] == 'POST'){
         //Funcion que comprobara los datos e imprimirá en función, no pondrá nada o escribirá los datos.
+
         function imprimirDatos(){
             //Condicional ternaria que dirá el nombre si el reporte de errores es false o en su defecto dejara string vacio.
             $nombre = (!reporteErrores($_POST['nombre'], 'nombre')) ? 'Tu nombre es : ' . $_POST['nombre'].'.<br>' : ''; 
@@ -117,8 +118,13 @@
             $telefono = (!reporteErrores($_POST['telefono'], 'telefeno')) ? 'Tu teléfono es : ' . $_POST['telefono'].'.<br>' : ''; 
             $pagina = (!empty($_POST['pagina'])) ? 'Tu página es '.$_POST['pagina'] . '<br>' : '';
             $correo = (!confirmacionCorreo($_POST['correo'],$_POST['correo2'])) ? 'Tu correo es : '.$_POST['correo'] . '<br>': '';
-            $spam = ($_POST['spam'] == 1)? 'Desea recibir spam.<br>' : 'No desea recibir spam.<br>';
-            //$aficiones = (!empty($_POST['aficiones'])) ?  'Tus aficiones son ' . foreach($_POST['aficiones'] as $aficion) {$aficion}. ' , ' . '<br>' : '';
+            $spam = ($_POST['spam'] == 1)? 'Desea recibir spam.<br>' : (($_POST['spam'] != 0) ? 'No desea recibir spam.<br>' : '');
+            //Variable auxiliar para poder leer el array de aficiones y que no de error
+            $valores = "";
+            foreach($_POST['aficiones'] as $valor){
+                $valores = $valores . " " . $valor . " ";
+            }
+            $aficiones = (!empty($_POST['aficiones'])) ?  'Tus aficiones son : ' . $valores . '<br>' : '';
             //Condicional ternario para las frutas jugando con la variable value y metiendo el formato que se desea.
             $frutas = (!empty($_POST['fruta'])) ? '<img src="'. $_POST['fruta'] . '" width=100px height =100px><br>': '';
             $fondo = (!empty($_POST['fondo'])) ? '<style> *{ background-color: bisque; }</style>' : '';
@@ -127,7 +133,7 @@
                 return $nombre.$apellidos.$edad.$telefono.$pagina.$correo.$spam.$aficiones.$frutas.$fondo.$letra.$texto;
         }
 
-        echo imprimirDatos();
+        echo '<div class="datos">'. imprimirDatos() . '</div>';
     }
     ?>
 </body>
