@@ -9,7 +9,9 @@
 </head>
 <body>
     <?php
-        error_reporting(1);
+        error_reporting(0);
+        //Incluimos el header con la hora y el botón.
+        include 'header.php';
         //Funcion para limpiar los datos que entran por pantalla.
         function limpiar($data){
                 $data = trim($data);
@@ -28,14 +30,17 @@
         }
         //Funcion para comprobar que la direccion de correo que nos entra no son iguales.
         function confirmacionCorreo($correo,$correo2){
-            if(!isset($correo) && !isset($correo2)){
-                return false;
-            } else if ($correo != $correo2){
-                return true;
+            if(empty($correo) || empty($correo2)){
+                return 0;
+            } else if (limpiar($correo) != limpiar($correo2)){
+                return 1;
+            } else if (!filter_var($correo, FILTER_VALIDATE_EMAIL)){
+                return 2;
+            } else {
+                return 3;
             }
         }
     ?>
-    <button><a href="http://localhost/DSW/">Back</a></button>
     <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" name="submit">
     <h1>Formulario</h1>
     <fieldset>
@@ -62,11 +67,41 @@
             <br><br>
             Peso: <input type="text" name="peso" autocomplete="off" size="3"> kg <br><br>
             Telefono: *<input type="text" name="telefono" size="12" autocomplete="off">
-            <?php echo (reporteErrores($_POST['telefono'],"telefono"))? '<span style = color:red> No ha introducido el teléfono.</span>': ''; ?> 
+            <!--Comprobación de lado del servidor para los requisitos del input-->
+            <?php
+                //Si no hemos enviado el formulario no saltará nada.
+                if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+                    echo (reporteErrores($_POST['telefono'],"telefono"))? '<span style = color:red> No ha introducido el teléfono.</span>' : ''; 
+                    //Comprobacion de que sean numeros los que entrar para informar al usuario
+                    echo (!empty($_POST['telefono']) && !filter_var($_POST['telefono'], FILTER_VALIDATE_INT )) ? '<span style = color:red> No puede introducir caracteres.</span>' : ''; 
+                }
+            ?> 
             <br><br>
-            Página Web: <input type="text" name="pagina" autocomplete="off"> <br> <br>
+            Página Web: <input type="text" name="pagina" autocomplete="off">
+            <!--Comprobación de lado del servidor para los requisitos del input-->
+            <?php
+                //Si no hemos enviado el formulario no saltará nada.
+                if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+                    echo (empty(filter_var($_POST['pagina'], FILTER_VALIDATE_URL))) ? '<span style = color:red> Tiene que introducir una dirección URL válida.</span>' : '';
+                }
+            ?>
+            <br><br>
             Indique su direccion de correo: *<input type="text" size="30" name="correo"> <br>
-            <?php echo (confirmacionCorreo($_POST['correo'],$_POST['correo2'])) ? '<span style = color:red> Los correos no coinciden.</span>': ''; ?> 
+            <!--Comprobación de lado del servidor para los requisitos del input con un método propio-->
+            <?php 
+                //Si no hemos enviado el formulario no saltará nada.
+                if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+                    //Comprobaremos los resultados de nuestro método propio de comprobación de correo
+                    $var = confirmacionCorreo($_POST['correo'],$_POST['correo2']);
+                    if($var == 0){
+                        echo '<span style = color:red> Debe introducir un correo. </span>';
+                    } else if ($var == 1){
+                        echo '<span style = color:red> Los correos no coinciden. </span>';
+                    } else if ($var == 2){
+                        echo '<span style = color:red> Formato de correo incorrecto. </span>';
+                    }   
+                }
+            ?> 
             <br>
             Confirme su direccion de correo: *<input type="text" size="30" autocomplete="off" name="correo2"> <br><br>
             Indique si quiere recibir correos nuestros: 
@@ -96,7 +131,7 @@
                 <input type="radio" name="letra" value="1"> Color de la letra de la página <br> <br>
                 <textarea name="comentarios" rows="10" cols="40" placeholder="Escribe aquí tus comentarios"></textarea>
             </fieldset>
-            <img src="" alt="" >
+            <input type="file" name="foto">
             <br><br>
             <input type="submit" value="Enviar" name="submit">
             <input type="reset" value="Borrar">
@@ -115,9 +150,9 @@
             //En el caso de la edad como no requiere una comprobación obligatoria comprobamos si nos viene vacio o no.
             $edad = (!empty($_POST['edad'])) ? 'Tu edad es '.$_POST['edad'] . ' años.<br>' : '';
             $peso = (!empty($_POST['peso'])) ? 'Tu peso es '.$_POST['peso'] . ' Kg.<br>' : '';
-            $telefono = (!reporteErrores($_POST['telefono'], 'telefeno')) ? 'Tu teléfono es : ' . $_POST['telefono'].'.<br>' : ''; 
-            $pagina = (!empty($_POST['pagina'])) ? 'Tu página es '.$_POST['pagina'] . '<br>' : '';
-            $correo = (!confirmacionCorreo($_POST['correo'],$_POST['correo2'])) ? 'Tu correo es : '.$_POST['correo'] . '<br>': '';
+            $telefono = (!reporteErrores(filter_var($_POST['telefono'], FILTER_VALIDATE_INT), 'telefono')) ? 'Tu teléfono es : ' . $_POST['telefono'].'.<br>' : ''; 
+            $pagina = (!empty(filter_var($_POST['pagina'], FILTER_VALIDATE_URL ))) ? 'Tu página es : '.$_POST['pagina'] . '<br>' : '';
+            $correo = (confirmacionCorreo($_POST['correo'],$_POST['correo2']) == 3) ? 'Tu correo es : '.$_POST['correo'] . '<br>' : '';
             $spam = ($_POST['spam'] == 1)? 'Desea recibir spam.<br>' : (($_POST['spam'] != 0) ? 'No desea recibir spam.<br>' : '');
             //Variable auxiliar para poder leer el array de aficiones y que no de error
             $valores = "";
@@ -130,11 +165,26 @@
             $fondo = (!empty($_POST['fondo'])) ? '<style> *{ background-color: bisque; }</style>' : '';
             $letra = (!empty($_POST['letra'])) ? '<style> *{ color: saddlebrown; }</style>' : '';
             $texto = (!empty($_POST['comentarios'])) ? 'Su comentario es: ' . $_POST['comentarios'] .'.': '';
-                return $nombre.$apellidos.$edad.$telefono.$pagina.$correo.$spam.$aficiones.$frutas.$fondo.$letra.$texto;
+
+                return $nombre.$apellidos.$edad.$peso.$telefono.$pagina.$correo.$spam.$aficiones.$frutas.$fondo.$letra.$texto;
         }
 
-        echo '<div class="datos">'. imprimirDatos() . '</div>';
+        function subirfoto(){
+            if (isset ( $_FILES['foto'] ) ) {
+
+                $file_size = $_FILES['foto']['size'];
+                $file_type = $_FILES['foto']['type'];
+            
+                if (($file_size > 25*1024)){      
+                    $mensaje = 'File too large. File must be less than 50 MB.'; 
+                    echo '<script type="text/javascript">alert("'.$mensaje.'");</script>'; 
+                }
+            }
+        }
+        echo '<div class = "resultado";>' . imprimirDatos() . '</div>';
     }
+    //Incluimos el footer con creative commons
+    include 'footer.php';
     ?>
 </body>
 </html>

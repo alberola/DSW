@@ -5,15 +5,27 @@ form{
     display: flex;
     flex-direction: column;
     justify-content: center;
+    margin-bottom: 1%;
 }
 h1{
     text-align: center;
-}
-div{
-    border: 3px solid black;
 }
 .datos{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+footer{
+    margin-top: 1%;
+    text-align: center;
+}
+.resultado{
+    text-align: center;
+    margin-left: 40%;
+    background-color: aliceblue;
+    margin-right: 40%;
+}
+.fecha{
+    display: inline-block;
+    float: right;
 }
