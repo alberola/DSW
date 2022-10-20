@@ -9,7 +9,7 @@
 </head>
 <body>
     <?php
-        error_reporting(0);
+        error_reporting(1);
         //Incluimos el header con la hora y el botón.
         include 'header.php';
         //Funcion para limpiar los datos que entran por pantalla.
