@@ -27,13 +27,19 @@
             array('alejandro','1234','admin'),
             array('ale','qwerty','usuario')
         );
-        if (isset($_POST['user']) && isset($_POST['password']) ){        
-            $user = clean($_POST['user']);
-            $password = clean($_POST['password']);
-            for ( $i = 0 ; $i < count($_SESSION["dates"]) ; $i++){
-                if ($user == $_SESSION["dates"][$i][0] && $password == $_SESSION["dates"][$i][1]){
-                    echo "<h3>Welcome ". $user . " you are " . $_SESSION["dates"][$i][2]."</h3>";
-                    break;
+        function correctlogin(){
+            if (isset($_POST['user']) && isset($_POST['password']) ){        
+                $user = clean($_POST['user']);
+                $password = clean($_POST['password']);
+                $cont = 0;
+                for ( $i = 0 ; $i < count($_SESSION["dates"]) ; $i++){
+                    if ($user == $_SESSION["dates"][$i][0] && $password == $_SESSION["dates"][$i][1]){
+                        echo "<h3>Welcome ". $user . " you are " . $_SESSION["dates"][$i][2]."</h3>";
+                        $cont++;
+                        break;
+                    } 
+                } if ($cont != 1) {
+                    echo "<h3> You are not register please do it first. </h3>";
                 }
             }
         }
@@ -46,6 +52,7 @@
         <input type="password" placeholder="1234" name="password">
         <input type="submit" value="Log in" class="submit" name="submit">
         <p class="link"><a href="register.php">Don't have an account yet?</a></p>
+        <p id="login"><?php correctlogin()?></p>
     </form>
 </body>
 </html>

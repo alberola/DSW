@@ -10,7 +10,7 @@
 </head>
 <body>
     <?php
-
+        error_reporting(0);
         function clean($data){
             $data = trim($data);
             $data = htmlentities($data);
@@ -18,31 +18,34 @@
             $data = stripslashesip($data);
             return $data;
         }
-
-        $_SESSION["$dates"] = array(
-            array('admin','1234','admin'),
-            array('alejandro','1234','admin'),
-            array('ale','qwerty','usuario')
-        );
-        if (isset($_POST['user']) && isset($_POST['password']) ){        
-            $user = clean($_POST['user']);
-            $password = clean($_POST['password']);
-            for ( $i = 0 ; i < count($dates) ; $i++){
-                if ($user != $dates[$i][0] && $password != $dates[$i][1]){
-                    echo "Incorrect log in please register first.";
-                } else {
-                    echo "";
+        session_start();
+        $users = $_SESSION['dates'];
+        
+        function register(){
+            if (isset($_POST['user']) && isset($_POST['password']) ){        
+                $user = clean($_POST['user']);
+                $password = clean($_POST['password']);
+                for ( $i = 0 ; i < count($users) ; $i++){
+                    if ($user == $users[$i][0] && $password == $users[$i][1]){
+                        echo "<h3>There are an user with the same user and password please log in.</h3>";
+                        break;
+                    } else {
+                        echo "<h3>Register succesfull.</h3>";
+                        $users.array_push("$user","$password","usuario");
+                        break;
+                    }
                 }
             }
         }
     ?>
-    <form action="">
+    <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
         <h1>Register Form</h1>
         <input type="text" placeholder="Insert your user" name="user">
         <input type="password" placeholder="Insert your password" name="password">
         <p class="terms">I agree with terms and conditions</p>
-        <button>Registrarse</button>
+        <button>Register</button>
         <p class="link"><a href="index.php">Do you already have an account?</a></p>
+        <p> <?php  register() ?></p>
     </form>
 </body>
 </html>
