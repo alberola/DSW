@@ -64,7 +64,6 @@
         } catch (PDOException $e) {
             echo "<span style='color:red;'>Error:". $e->getmessage()."</span><br>";
         }
-
         $conn = null;
     }
 
