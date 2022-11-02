@@ -19,7 +19,7 @@
 
     //Ejecutamos las funciones
     instalacionArchivo($servername,$username,$password,$adminUserName,$adminPassword,$dbname);
-    crearTablas($servername, $username, $password, $dbname, $sqlpath);
+    crearTablas($servername, $adminUserName, $adminPassword, $dbname, $sqlpath);
 
     //Función para crear la base de datos y usuarios
     function instalacionArchivo($servername,$username,$password,$adminUserName,$adminPassword,$dbname){
@@ -43,13 +43,14 @@
     }
 
     //Función para crear tablas desde el archivo .sql
-    function crearTablas($servername, $username, $password, $dbname, $sqlpath) {
+    function crearTablas($servername, $adminUserName, $adminPassword, $dbname, $sqlpath) {
         try{
             //Crear con la base de datos
-            $conn = new PDO("mysql:host=$servername", $username, $password);
+            $conn = new PDO("mysql:host=$servername", $adminUserName, $adminPassword);
             $conn -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-            echo "<span style='color:green;'>Conexión exitosa con el usuario " . $username . "<br>";
+            //Imprimiremos según se vaya realizando las creaciones en color verder para ver si se ha realizado correctamente
+            echo "<span style='color:green;'>Conexión exitosa con el usuario " . $adminUserName . "<br>";
 
             $sql = "USE $dbname";
             $conn -> exec($sql);

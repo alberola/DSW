@@ -180,6 +180,11 @@ INSERT INTO `productos` (`id`, `nombre`, `descripcion`, `precio`, `peso`, `longi
 (2, 'Lámpara cubo', 'Esta es la descripción de la lámpara cubo', '25.00', 1, 25, 25, 25, 17, 1),
 (3, 'Lámpara Estrella', 'Descripción de la lámpara estrella', '18.00', 1, 20, 20, 20, 13, 1);
 
+--
+-- Añadimos las foreign keys al final para enlazar las distintas tablas.
+--
 
-
-
+alter table pedidos add CONSTRAINT fk_ped_idc FOREIGN KEY (`idcliente`) REFERENCES clientes(`id`);
+alter table imagenesproductos add CONSTRAINT fk_ima_idp FOREIGN KEY (`idproducto`) REFERENCES productos(`id`);
+alter table lineaspedido add CONSTRAINT fk_lin_idp FOREIGN KEY (`idpedido`) REFERENCES pedidos(`id`);
+alter table lineaspedido add CONSTRAINT fk_lin_idpr FOREIGN KEY (`idproducto`) REFERENCES productos(`id`);
