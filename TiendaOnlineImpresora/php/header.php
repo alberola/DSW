@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,8 +9,8 @@
 </head>
 <body>
     <nav class="navbar navbar-dark bg-dark row text-center">
-        <div class="container-fluid m-3 p-3 justify-content-center">
-            <a class="navbar-brand" href="#"><img src="../logo.jpeg" alt="3DMakerProject" width="100px" class=""></a>
+        <div class="container-fluid m-3 p-3 justify-content-between pl-5 pr-5">
+            <img src="img/logo1.png" alt="3DMakerProject" width="100px">
             <ul class="nav ">
                 <li class="nav-item">
                     <button class="nav-link btn btn-dark link-light">INICIO</button>
@@ -22,10 +22,5 @@
                 <a class="nav-link link-light" href="#">CONTACTO</a>
                 </li>
             </ul>
-
         </div>
     </nav>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-</body>
-</html>
