@@ -9,7 +9,7 @@
 </head>
 <body>
     <nav class="navbar navbar-dark bg-dark row text-center">
-        <div class="container-fluid m-3 p-3 justify-content-between pl-5 pr-5">
+        <div class="container-fluid m-3 p-3 justify-content-between">
             <img src="img/logo1.png" alt="3DMakerProject" width="100px">
             <ul class="nav ">
                 <li class="nav-item">

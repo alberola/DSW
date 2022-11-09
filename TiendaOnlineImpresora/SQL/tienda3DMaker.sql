@@ -27,7 +27,6 @@ CREATE TABLE IF NOT EXISTS `imagenesproductos` (
   PRIMARY KEY (`id`)
 );
 
-
 CREATE TABLE IF NOT EXISTS `lineaspedido` (
   `id` int(100) NOT NULL AUTO_INCREMENT,
   `idpedido` int(100) DEFAULT NULL,
@@ -44,17 +43,14 @@ CREATE TABLE IF NOT EXISTS `pedidos` (
   PRIMARY KEY (`id`)
 );
 
-
 CREATE TABLE IF NOT EXISTS `productos` (
   `id` int(100) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(255) DEFAULT NULL,
   `descripcion` varchar(255) DEFAULT NULL,
   `precio` decimal(30,2) DEFAULT NULL,
-  `stock` tinyint(1) DEFAULT NULL,
   `activado` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
 );
-
 
 alter table pedidos add CONSTRAINT fk_ped_idc FOREIGN KEY (`idcliente`) REFERENCES clientes(`id`);
 alter table imagenesproductos add CONSTRAINT fk_ima_idp FOREIGN KEY (`idproducto`) REFERENCES productos(`id`);

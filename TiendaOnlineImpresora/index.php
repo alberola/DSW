@@ -19,6 +19,7 @@
                     echo "<p class='card-text'>".$registro["descripcion"]."</p>";
                     echo "<p class='card-price'>" . $registro["precio"]. "€</p>"; 
                     echo "<a href='#' class='btn btn-dark'>Comprar</a>";
+                    echo "<a href='php/products.php?id=".$registro['idproducto']."' class='btn btn-dark m-2'>Mas información</a>";
                 echo "</div>";
             echo "</div>";   
         }
