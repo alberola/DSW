@@ -1,4 +1,3 @@
-create database 3DMakerProject;
 
 use 3DMakerProject;
 
