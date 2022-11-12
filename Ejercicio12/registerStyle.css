@@ -59,7 +59,7 @@ input{
     margin-bottom: 15px;
     font-size: 15px;
 }
-button{
+.register{
     display: block;
     margin: auto;
     width: 100%;
