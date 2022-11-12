@@ -9,9 +9,17 @@
     <title>Iniciar Sesion</title>
 </head>
 <body>
+    <button class="back"><a href="http://localhost/DSW/">Back</a></button>
+    <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
+        <h1>Alejandro Alberola Log in</h1>
+        <input type="text" placeholder="alejandro" name="user">
+        <input type="password" placeholder="1234" name="password">
+        <input type="submit" value="Log in" class="submit" name="submit">
+        <p class="link"><a href="register.php">Don't have an account yet?</a></p>
+        <p id="login"></p>
+    </form>
     <?php
     if(isset($_POST['submit'])) {
-
 
         function clean($data){
             $data = trim($data);
@@ -27,6 +35,7 @@
             array('alejandro','1234','admin'),
             array('ale','qwerty','usuario')
         );
+
         function correctlogin(){
             if (isset($_POST['user']) && isset($_POST['password']) ){        
                 $user = clean($_POST['user']);
@@ -45,14 +54,5 @@
         }
     }
     ?> 
-    <button class="back"><a href="http://localhost/DSW/">Back</a></button>
-    <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
-        <h1>Alejandro Alberola Log in</h1>
-        <input type="text" placeholder="alejandro" name="user">
-        <input type="password" placeholder="1234" name="password">
-        <input type="submit" value="Log in" class="submit" name="submit">
-        <p class="link"><a href="register.php">Don't have an account yet?</a></p>
-        <p id="login"><?php correctlogin()?></p>
-    </form>
 </body>
 </html>
