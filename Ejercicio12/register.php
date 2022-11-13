@@ -39,7 +39,6 @@
                     echo "<h3>Register succesfull.</h3>";
                     $newArray = array($user, $password, "usuario");
                     array_push($_SESSION['dates'], $newArray);
-                    print_r($_SESSION['dates']);
                     header("refresh:2; url=index.php");
                     session_destroy();
                 }

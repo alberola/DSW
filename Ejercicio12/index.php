@@ -28,7 +28,6 @@
             return $data;
         }
 
-        print_r($_SESSION["dates"]);
         function correctlogin(){
             if (isset($_POST['user']) && isset($_POST['password']) ){        
                 $user = clean($_POST['user']);

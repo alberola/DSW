@@ -131,6 +131,7 @@
                 <input type="radio" name="letra" value="1"> Color de la letra de la página <br> <br>
                 <textarea name="comentarios" rows="10" cols="40" placeholder="Escribe aquí tus comentarios"></textarea>
             </fieldset>
+            <input type="hidden" name="MAX_FILE_SIZE" value="25000">
             <input type="file" name="foto">
             <br><br>
             <input type="submit" value="Enviar" name="submit">
@@ -172,16 +173,30 @@
         function subirfoto(){
             if (isset ( $_FILES['foto'] ) ) {
 
-                $file_size = $_FILES['foto']['size'];
-                $file_type = $_FILES['foto']['type'];
-            
-                if (($file_size > 25*1024)){      
-                    $mensaje = 'File too large. File must be less than 50 MB.'; 
-                    echo '<script type="text/javascript">alert("'.$mensaje.'");</script>'; 
+                $archivo = $_FILES['foto']['name'];
+                $tipo = $_FILES['foto']['type'];
+                $tamano = $_FILES['foto']['size'];
+                $temp = $_FILES['foto']['tmp_name'];
+                //Se comprueba si el archivo a cargar es correcto observando su extensión y tamaño
+               if (!(strpos($tipo, "svg")) && ($tamano < 25000)) {
+                  echo   "Error. La extensión o el tamaño de los archivos no es correcta.<br>
+                  - Se permiten archivos .svg. y de 25 kb como máximo.";
+               } else {
+                    //Si la imagen es correcta en tamaño y tipo
+                    //Se intenta subir al servidor
+                    if (move_uploaded_file($temp, $archivo)) {
+                        //Cambiamos los permisos del archivo a 777 para poder modificarlo posteriormente
+                        chmod('images/'.$archivo, 0777);
+                        //Mostramos el mensaje de que se ha subido co éxito
+                        echo 'Se ha subido correctamente la imagen.';
+                        //Mostramos la imagen subida
+                        echo '<p><img src=".$archivo."></p>';
+                    }
                 }
             }
         }
         echo '<div class = "resultado";>' . imprimirDatos() . '</div>';
+        subirfoto();
     }
     //Incluimos el footer con creative commons
     include 'footer.php';
