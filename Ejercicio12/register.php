@@ -22,18 +22,16 @@
             return $data;
         }
         
-        $users = $_SESSION['dates'];
-        
-        $cont = true;
+        $cont = false;
 
         function register(){
             if (isset($_POST['user']) && isset($_POST['password']) ){        
                 $user = clean($_POST['user']);
                 $password = clean($_POST['password']);
-                for ( $i = 0 ; i < count($users) ; $i++){
-                    if ($user == $users[$i][0] && $password == $users[$i][1]){
+                for ( $i = 0 ; $i < count($_SESSION['dates']) ; $i++){
+                    if ($user == $_SESSION['dates'][$i][0] && $password == $_SESSION['dates'][$i][1]){
                         echo "<h3>There is an user with the same user and password please log in.</h3>";
-                        $cont = false;
+                        $cont = true;
                         break;
                     }
                 }
@@ -42,10 +40,12 @@
                     $newArray = array($user, $password, "usuario");
                     array_push($_SESSION['dates'], $newArray);
                     print_r($_SESSION['dates']);
+                    header("refresh:2; url=index.php");
                     session_destroy();
                 }
             }
         }
+
         register();
     }
     ?>
