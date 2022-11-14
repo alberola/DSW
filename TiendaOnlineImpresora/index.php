@@ -27,9 +27,10 @@
                 <div class='col'></div>
                 </div>
             </div>";
+            echo "<a href='admin/panelControl.php' class='btn btn-dark m-2'>Panel de Control</a>";
     ?>
     <!-- Cerramos la conexión con la base de datos -->
     <?php include 'php/close.php'?>
     <!--Incluimos el footer-->
-    <?php include 'php/footer.php'?>
+    <?php //include 'php/footer.php'?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
