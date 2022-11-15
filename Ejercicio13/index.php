@@ -171,8 +171,8 @@
         }
 
         function subirfoto(){
-            if (isset ( $_FILES['foto'] ) ) {
-
+            if (isset ($_FILES['foto'] ) ) {
+                //actualización
                 $archivo = $_FILES['foto']['name'];
                 $tipo = $_FILES['foto']['type'];
                 $tamano = $_FILES['foto']['size'];
