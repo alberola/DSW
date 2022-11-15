@@ -9,52 +9,50 @@
     <title>Formulario de Registro</title>
 </head>
 <body>
+    <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
+        <h1>Register Form</h1>
+        <input type="text" placeholder="Insert your user" name="user">
+        <input type="password" placeholder="Insert your password" name="password">
+        <p class="terms">I agree with terms and conditions</p>
+        <button>Register</button>
+        <p class="link"><a href="index.php">Do you already have an account?</a></p>
+        <p> <?php  register() ?></p>
+    </form>
     <?php
-    error_reporting(1);
-    session_start();
-    if (isset($_POST['submit'])){
+    if(isset($_POST['submit'])) {
+        error_reporting(0);
 
         function clean($data){
             $data = trim($data);
             $data = htmlentities($data);
             $data = htmlspecialchars($data);
-            $data = stripslashes($data);
+            $data = stripslashesip($data);
             return $data;
         }
+        session_start();
+        $users = $_SESSION['dates'];
         
-        $cont = false;
-
+        $cont = true;
         function register(){
             if (isset($_POST['user']) && isset($_POST['password']) ){        
                 $user = clean($_POST['user']);
                 $password = clean($_POST['password']);
-                for ( $i = 0 ; $i < count($_SESSION['dates']) ; $i++){
-                    if ($user == $_SESSION['dates'][$i][0] && $password == $_SESSION['dates'][$i][1]){
-                        echo "<h3>There is an user with the same user and password please log in.</h3>";
-                        $cont = true;
+                for ( $i = 0 ; i < count($users) ; $i++){
+                    if ($user == $users[$i][0] && $password == $users[$i][1]){
+                        echo "<h3>There are an user with the same user and password please log in.</h3>";
+                        $cont = false;
                         break;
                     }
                 }
                 if (!$cont) {
                     echo "<h3>Register succesfull.</h3>";
                     $newArray = array($user, $password, "usuario");
-                    array_push($_SESSION['dates'], $newArray);
-                    header("refresh:2; url=index.php");
+                    array_push($users, $newArray);
                     session_destroy();
                 }
             }
         }
-
-        register();
     }
     ?>
-    <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
-        <h1>Register Form</h1>
-        <input type="text" placeholder="Insert your user" name="user">
-        <input type="password" placeholder="Insert your password" name="password">
-        <p class="terms">I agree with terms and conditions</p>
-        <input type="submit" value="Register" class="submit" name="submit">
-        <p class="link"><a href="index.php">Do you already have an account?</a></p>
-    </form>
 </body>
 </html>
