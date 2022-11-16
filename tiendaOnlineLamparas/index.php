@@ -3,12 +3,11 @@
     <?php include 'php/header.php'?>
     <!--Conexión a la base de datos-->
     <?php include 'php/connect.php'?>
-    <h1 class="text-center display-6 m-2">Cuerpo de la página</h1>
     <?php
         $peticion = $conn->query("SELECT * FROM PRODUCTOS  INNER JOIN imagenesproductos on productos.id = imagenesproductos.idproducto
         and productos.activado = '1' and EXISTENCIAS > 0 group BY `productos`.`id` DESC");
     
-        echo "<div class='container'>
+        echo "<div class='container mb-5 mt-5'>
                     <div class='row'>
                         <div class='col'></div>
                         <div class='col-9'><div class='card-group'>";

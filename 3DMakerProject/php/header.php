@@ -8,19 +8,4 @@
     <title>3DMakerProject</title>
 </head>
 <body>
-    <nav class="navbar navbar-dark bg-dark row text-center">
-        <div class="container-fluid m-3 p-3 justify-content-between">
-            <img src="img/logo1.png" alt="3DMakerProject" width="100px">
-            <ul class="nav ">
-                <li class="nav-item">
-                    <button class="nav-link btn btn-dark link-light">INICIO</button>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link link-light" href="#">PRODUCTOS</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link link-light" href="#">CONTACTO</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+    <h1 class="text-center display-5 mt-3 mb-5">Header</h1>
