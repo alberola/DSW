@@ -9,18 +9,17 @@
     <title>Iniciar Sesion</title>
 </head>
 <body>
-    <button class="back"><a href="http://localhost/DSW/">Back</a></button>
-    <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
-        <h1>Alejandro Alberola Log in</h1>
-        <input type="text" placeholder="alejandro" name="user">
-        <input type="password" placeholder="1234" name="password">
-        <input type="submit" value="Log in" class="submit" name="submit">
-        <p class="link"><a href="register.php">Don't have an account yet?</a></p>
-        <p id="login"></p>
-    </form>
     <?php
-    if(isset($_POST['submit'])) {
+    session_start();
+    if (!isset($_SESSION["dates"])){
+        $_SESSION["dates"] = array(
+            array('admin','1234','admin'),
+            array('alejandro','1234','admin'),
+            array('ale','qwerty','usuario')
+        );
+    }
 
+    if (isset($_POST['submit'])){
         function clean($data){
             $data = trim($data);
             $data = htmlentities($data);
@@ -28,13 +27,6 @@
             $data = stripslashes($data);
             return $data;
         }
-
-        session_start();
-        $_SESSION["dates"] = array(
-            array('admin','1234','admin'),
-            array('alejandro','1234','admin'),
-            array('ale','qwerty','usuario')
-        );
 
         function correctlogin(){
             if (isset($_POST['user']) && isset($_POST['password']) ){        
@@ -52,7 +44,16 @@
                 }
             }
         }
+        correctlogin();
     }
     ?> 
+    <button class="back"><a href="http://localhost/DSW/">Back</a></button>
+    <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
+        <h1>Alejandro Alberola Log in</h1>
+        <input type="text" placeholder="alejandro" name="user">
+        <input type="password" placeholder="1234" name="password">
+        <input type="submit" value="Log in" class="submit" name="submit">
+        <p class="link"><a href="register.php">Don't have an account yet?</a></p>
+    </form>
 </body>
 </html>
