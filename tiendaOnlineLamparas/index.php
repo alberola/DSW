@@ -6,8 +6,9 @@
     <h1 class="text-center display-6 m-2">Cuerpo de la página</h1>
     <?php
         $peticion = $conn->query("SELECT * FROM PRODUCTOS  INNER JOIN imagenesproductos on productos.id = imagenesproductos.idproducto
-         and productos.activado = '1' and EXISTENCIAS > 0 group BY `productos`.`id` DESC");
-         echo "<div class='container'>
+        and productos.activado = '1' and EXISTENCIAS > 0 group BY `productos`.`id` DESC");
+    
+        echo "<div class='container'>
                     <div class='row'>
                         <div class='col'></div>
                         <div class='col-9'><div class='card-group'>";
@@ -18,7 +19,7 @@
                     echo "<h5 class='card-tittle'>" . $registro["nombre"] . "</h5>";
                     echo "<p class='card-text'>".$registro["descripcion"]."</p>";
                     echo "<p class='card-price'>" . $registro["precio"]. "€</p>"; 
-                    echo "<a href='#' class='btn btn-dark'>Comprar</a>";
+                    echo "<a href='#' class='btn btn-dark'>Realizar Pedido</a>";
                     echo "<a href='php/products.php?id=".$registro['idproducto']."' class='btn btn-dark m-2'>Mas información</a>";
                 echo "</div>";
             echo "</div>";   

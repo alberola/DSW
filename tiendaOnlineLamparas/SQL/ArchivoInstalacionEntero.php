@@ -9,7 +9,7 @@
 
     //Nombre de la base de datos a crear
 
-    $dbname = "PruebaAlejandro";
+    $dbname = "tiendaLamparas";
     //Variables de usuario admin para trabajar con el
     $adminUserName = "admin";
     $adminPassword = "admin1234";
