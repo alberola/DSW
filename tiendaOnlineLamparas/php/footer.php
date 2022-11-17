@@ -1,10 +1,11 @@
-        <div class="container-fluid bg-dark text-white text-center ">
+        <hr>
+        <div class="container-fluid text-center ">
             <div class="row">
                 <div class="col-12 col-md-5">
                     <p class="h5 mb-3 pt-3">Talk with me...</p>
                     <form action="">
                         <input type="text" placeholder="ej@gmail.com" class="form-control-sm shadow text-secondary bg-light">
-                        <input type="submit" value="Send" class="btn btn-light">
+                        <input type="submit" value="Send" class="btn btn-dark">
                     </form>
                 </div>
                 <div class="col-12 col-md-6">
@@ -22,7 +23,7 @@
                     </div>
                 </div>
                 <div class="col-12 pt-3">
-                    <p class="text-white text-center">Copyright © Alejandro Alberola <?php  echo $year = date("Y");?>. All rights reserved</p>
+                    <p class="text-center">Copyright © Alejandro Alberola <?php  echo $year = date("Y");?>. All rights reserved</p>
                 </div>
             </div>
         </div>  

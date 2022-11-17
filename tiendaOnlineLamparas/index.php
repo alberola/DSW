@@ -12,13 +12,13 @@
                         <div class='col'></div>
                         <div class='col-9'><div class='card-group'>";
         while ($registro = $peticion ->fetch(PDO::FETCH_BOTH /*FETCH_OBJ*/)) {
-            echo "<div class='card ms-4 text-center' style='width: 18rem;'>";
+            echo "<div class='card ms-4 text-center shadow' style='width: 18rem;'>";
                 echo "<img src='photo/". $registro['imagen']. "' class='card-img-top'>";
                 echo "<div class='card-body'>";
                     echo "<h5 class='card-tittle'>" . $registro["nombre"] . "</h5>";
                     echo "<p class='card-text'>".$registro["descripcion"]."</p>";
                     echo "<p class='card-price'>" . $registro["precio"]. "€</p>"; 
-                    echo "<a href='#' class='btn btn-dark'>Realizar Pedido</a>";
+                    echo "<a href='#' class='btn btn-dark'>Comprar</a>";
                     echo "<a href='php/products.php?id=".$registro['idproducto']."' class='btn btn-dark m-2'>Mas información</a>";
                 echo "</div>";
             echo "</div>";   

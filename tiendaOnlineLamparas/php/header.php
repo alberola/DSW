@@ -5,12 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
     <title>Tienda Lámparas</title>
 </head>
 <body>
     <div class="container-fluid">
         <div class="row">
-            <nav class="navbar navbar-dark bg-dark row text-center">
+            <nav class="navbar navbar-dark  row text-center">
                 <div class="container-fluid m-3 p-3 justify-content-between">
                     <img src="img/logo1.png" alt="3DMakerProject" width="100px">
                     <ul class="nav ">
@@ -28,3 +29,4 @@
             </nav>
         </div>
     </div>
+    <hr>
