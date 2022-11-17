@@ -9,10 +9,6 @@
                 <th>Nombre</th>
                 <th>Descripcion</th>
                 <th>Precio</th>
-                <th>Longitud</th>
-                <th>Anchura</th>
-                <th>Altura</th>
-                <th>Existencias</th>
             </tr>
             ";
         while ($productos = $consulta->fetch(PDO::FETCH_BOTH /*FETCH_OBJ*/)){
@@ -20,10 +16,6 @@
                     <td>".$productos['nombre']."</td>
                     <td>".$productos['descripcion']."</td>.
                     <td>".$productos['precio']."</td>
-                    <td>".$productos['longitud']."</td>
-                    <td>".$productos['anchura']."</td>
-                    <td>".$productos['altura']."</td>
-                    <td>".$productos['existencias']."</td>
                  </tr>";
         }
         echo "</table>";
