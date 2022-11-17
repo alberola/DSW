@@ -9,24 +9,17 @@
     <title>Tienda Lámparas</title>
 </head>
 <body>
+    <nav class="navbar">
     <div class="container-fluid">
         <div class="row">
-            <nav class="navbar navbar-dark  row text-center">
-                <div class="container-fluid m-3 p-3 justify-content-between">
-                    <img src="img/logo1.png" alt="3DMakerProject" width="100px">
-                    <ul class="nav ">
-                        <li class="nav-item">
-                            <button class="nav-link btn btn-dark link-light">INICIO</button>
-                        </li>
-                        <li class="nav-item">
-                        <a class="nav-link link-light" href="#">PRODUCTOS</a>
-                        </li>
-                        <li class="nav-item">
-                        <a class="nav-link link-light" href="#">CONTACTO</a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
+            <div class="col-3"></div>
+            <div class="col-3">
+                <a class="navbar-brand text-center" href="index.php">
+                <img src="img/log.png"  width="100" height="125" class="rounded-5">
+                </a>
+            </div>
+
         </div>
     </div>
+    </nav>
     <hr>

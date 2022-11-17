@@ -10,7 +10,8 @@
         echo "<div class='container mb-5 mt-5'>
                     <div class='row'>
                         <div class='col'></div>
-                        <div class='col-9'><div class='card-group'>";
+                        <div class='col-9'>
+                        <div class='card-group'>";
         while ($registro = $peticion ->fetch(PDO::FETCH_BOTH /*FETCH_OBJ*/)) {
             echo "<div class='card ms-4 text-center shadow' style='width: 18rem;'>";
                 echo "<img src='photo/". $registro['imagen']. "' class='card-img-top'>";

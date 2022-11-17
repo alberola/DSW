@@ -1,23 +1,23 @@
         <hr>
         <div class="container-fluid text-center ">
-            <div class="row">
+            <div class="row mb-3">
                 <div class="col-12 col-md-5">
                     <p class="h5 mb-3 pt-3">Talk with me...</p>
                     <form action="">
                         <input type="text" placeholder="ej@gmail.com" class="form-control-sm shadow text-secondary bg-light">
-                        <input type="submit" value="Send" class="btn btn-dark">
+                        <input type="submit" value="Send" class="btn btn-dark shadow">
                     </form>
                 </div>
-                <div class="col-12 col-md-6">
+                <div class="col-12 mb-4 col-md-6">
                     <p class="h5 mb-3 pt-3">Social Media</p>
-                    <div class="row">
-                        <div class="offset-md-3  mb-3 col-12 col-md-2" >
+                    <div class="row justify-content-center">
+                        <div class=" col-4 col-md-2" >
                             <a href="https://www.instagram.com/aleeex7_/" target="_blank"><img src="img/instagram.png"width="40px"></a>
                         </div>
-                        <div class="mb-3 col-12 col-md-2">
+                        <div class="col-4 col-md-2">
                             <a href="https://www.linkedin.com/in/alejandro-alberola-gopar-652284238/" target="_blank"><img src="img/linkedin.png" width="40px"></a>
                         </div>
-                        <div class="col-12 col-md-2">
+                        <div class="col-4 col-md-2">
                             <a href="https://github.com/alberola" target="_blank"><img src="img/github.png"width="40px"></a>
                         </div>
                     </div>
