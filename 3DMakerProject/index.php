@@ -5,7 +5,7 @@
     <?php include 'php/connect.php'?>
 
     <?php
-        $peticion = $conn->query("SELECT * FROM PRODUCTOS  INNER JOIN imagenesproductos on productos.id = imagenesproductos.idproducto
+        $peticion = $conn->query("SELECT * FROM productos  INNER JOIN imagenesproductos on productos.id = imagenesproductos.idproducto
         and productos.activado = 1 group BY `productos`.`id` DESC;");
         $auxCarousel = 0;
     ?>
