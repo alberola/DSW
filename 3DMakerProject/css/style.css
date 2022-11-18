@@ -1,0 +1,18 @@
+hr{
+    margin-left: 10%;
+    margin-right: 10%;
+}
+#producto:hover{
+    transform: scale(1.05);
+    transition: all 1.5s;
+}
+#imgCard:hover{
+    opacity: 0.8;
+    transition: all 1.5s;
+}
+#producto{
+    transition: all 1.5s;
+}
+#imgCard{
+    transition: all 1.5s;
+}
