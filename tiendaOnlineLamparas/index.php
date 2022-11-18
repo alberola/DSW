@@ -13,6 +13,11 @@
                         <div class='col-9'>
                         <div class='card-group'>";
         while ($registro = $peticion ->fetch(PDO::FETCH_BOTH /*FETCH_OBJ*/)) {
+                //APUNTE DE RAI   
+                    //$strHTML <<< HTML
+                    //  <div class=""></div>
+                    //HTML;
+
             echo "<div class='card ms-4 text-center shadow' style='width: 18rem;'>";
                 echo "<img src='photo/". $registro['imagen']. "' class='card-img-top'>";
                 echo "<div class='card-body'>";
