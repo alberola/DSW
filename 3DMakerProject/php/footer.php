@@ -1,6 +1,6 @@
         <hr>
-        <div class="container-fluid text-center">
-            <div class="row mb-3">
+        <div class="container-fluid text-center bg-light">
+            <div class="row ">
                 <div class="offset-sm-0 offset-md-1 col-12 col-md-5">
                 <p class="h5 mb-3 pt-3">Donde localizarnos</p>
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d520.4362497196988!2d-17.923774727116744!3d28.65780787304748!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xc6bf3dc7a30c7ab%3A0x15a751d7b05f2b58!2sC.%20los%20Molinos%2C%2015%2C%2038768%20Los%20Llanos%2C%20Santa%20Cruz%20de%20Tenerife!5e0!3m2!1ses!2ses!4v1668967053278!5m2!1ses!2ses" width="300" height="200" style="border:0;" class="shadow" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>

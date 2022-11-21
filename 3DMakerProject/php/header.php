@@ -11,28 +11,27 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg bg-light">
-    <div class="container-fluid mt-3 text-center d-flex justify-content-between border">
-        <a class="navbar-brand" href="#"><img src="img/logo_png.png" alt="Logo" height="100px"></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-                <a class="nav-link active" aria-current="page" href="#">Inicio</a>
-                <a class="nav-link" href="#">Productos</a>
-                <a class="nav-link" href="#">Contacto</a>
+        <div class="container-fluid mt-3  ">
+            <a class="navbar-brand" href="#"><img src="img/logo_png.png" alt="Logo" height="100px"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse text-center" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+                    <a class="nav-link" href="#">Productos</a>
+                    <a class="nav-link" href="#">Contacto</a>
+                    <a class="nav-link" href="#">Sobre Nosotros</a>
+                </div>
+            </div>
+            <div class="d-flex" id="usuarios">
+                <a href="">
+                    <img src="img/usuario.png" alt="" height="30px">
+                </a>
+                <a href="">
+                    <img src="img/carro.png" alt="" height="30px">
+                </a>
             </div>
         </div>
-        <div class="d-flex">
-            <a href="">
-                <i class="fa-solid fa-user"></i>
-            </a>
-        </div>
-        <div class="d-flex">
-            <a href="">
-                <i class="fa-regular fa-cart-shopping"></i>
-            </a>
-        </div>
-    </div>
     </nav>
     <hr>

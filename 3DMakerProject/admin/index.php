@@ -46,7 +46,7 @@
     <form action="borrarProducto.php" class="m-2 text-center" method="post">
     <?php 
         //Select para poder cargar todos los productos a borrar  
-        $borrar = $conn ->query("SELECT * FROM productos;");
+        $borrar = $conn ->query("SELECT * FROM productos ORDER BY id DESC;");
     ?>
         <select name="productoBorrar" id="productos">
             <option value="X" selected disabled>Producto a Borrar</option>
@@ -64,7 +64,7 @@
         <select name="productoActualizar" id="productosActualizar">
             <option value="X" selected disabled>Producto a Actualizar</option>
             <?php 
-                $actualizar = $conn ->query("SELECT * FROM productos;"); 
+                $actualizar = $conn ->query("SELECT * FROM productos ORDER BY id DESC;"); 
                 while ($actualizado = $actualizar->fetch(PDO::FETCH_BOTH /*FETCH_OBJ*/)){     
             ?>
                 <option value="<?php echo $actualizado['id']?>"><?php echo $actualizado['nombre']?></option>
