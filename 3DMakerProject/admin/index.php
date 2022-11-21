@@ -72,20 +72,35 @@
         </select>
         <br><br>
         <div id="mostrarDatosActualizar" style="display:none;">
-            <label for="nombre">Nombre</label>
-            <input type="text" name="nombre"><br><br>
-            <label for="precio">Precio</label>
-            <input type="number" name="precio"><br><br>
-            <select name="visible" id="visible" required>
-                <option value="0" selected disabled>Visible</option>
-                <option value="1">Si</option>
-                <option value="0">No</option>
-            </select><br><br>
-            <label for="descripcion" class="text-center">Descripción</label> <br><br>
-            <textarea name="descripcion" rows="5" cols="30" placeholder="Lorem Ipsum"></textarea> 
-            <br><br>
-            <input type="file" name="imagen" id="imagen"><br><br>
-            <input type="submit" value="Actualizar">
+            <form action="">
+                <table class="table table-hover text-center">
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Precio</th>
+                        <th>visible</th>
+                        <th>Descripción</th>
+                        <th>Enviar</th>
+                    </tr>
+                    <?php //$idActualizar = ?> <script type="text/javascript">productosActualizar.addEventListener('click', function (){return productosActualizar.value});</script> <?php//; ?>
+                    <?php $mostrarDatos = $conn ->query("SELECT * FROM productos WHERE id = $idActualizar ORDER BY id DESC;")
+                        //while ($tablaActualizar = $mostrarDatos->fetch(PDO::FETCH_BOTH /*FETCH_OBJ*/)){  
+                    ?>  
+                            <tr>
+                                <th><input type="text" name="nombreActualizar" value="<?php $tablaActualizar['nombre'];?>"></th>
+                                <th><input type="number" name="precioActualizar" value="<?php $tablaActualizar['precio'];?>"></th>
+                                <th>
+                                <select name="visibleActualizar" id="visible" required>
+                                    <option value="0" selected disabled>Visible</option>
+                                    <option value="1">Si</option>
+                                    <option value="0">No</option>
+                                </select>
+                                </th>
+                                <th><input type="text" name="descripcionActualizar" value="<?php $tablaActualizar['descripcion'];?>"></th>
+                                <th><input type="submit" value="Actualizar"></th>
+                            </tr> 
+                    <?php // } ?>
+                </table>
+            </form> 
         </div>
     </form>
     <a href="../index.php" class="text-center m-2">Volver</a>

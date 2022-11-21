@@ -8,6 +8,7 @@
 
             $sql = $conn->prepare("INSERT INTO productos VALUES (null, '$nombre','$descripcion', '$precio', '$visible')");
             $sql->execute();
+
             if ($_FILES['imagen']['type'] == "image/gif" || $_FILES['imagen']['type'] == "image/jpeg" || $_FILES['imagen']['type'] == "image/png" || $_FILES['imagen']['type'] == "image/jpg"){
                 $rutaServidor = "../photo";
                 $rutaTemporal = $_FILES['imagen']['tmp_name'];
