@@ -9,15 +9,19 @@
             $sql = $conn->prepare("INSERT INTO productos VALUES (null, '$nombre','$descripcion', '$precio', '$visible')");
             $sql->execute();
             
-            if ($_FILES['imagen']['type'] == "image/gif" || $_FILES['imagen']['type'] == "image/jpeg" || $_FILES['imagen']['type'] == "image/png" || $_FILES['imagen']['type'] == "image/jpg"){
-                $rutaServidor = "../photo";
-                $rutaTemporal = $_FILES['imagen']['tmp_name'];
-                $nombreImagen = $_FILES['imagen']['name'];
-                $rutaDestino = $rutaServidor."/".$nombreImagen;
-                move_uploaded_file($rutaTemporal,$rutaDestino);
+            $bucle = count($_FILES['imagen']['tmp_name']);
+
+            for ($i = 0; $i < $bucle; $i++) {
+
+                if ($_FILES['imagen']['type'][$i] == "image/gif" || $_FILES['imagen']['type'][$i] == "image/jpeg" || $_FILES['imagen']['type'][$i] == "image/png" || $_FILES['imagen']['type'][$i] == "image/jpg"){
+                    $rutaServidor = "../photo";
+                    $rutaTemporal = $_FILES['imagen']['tmp_name'][$i];
+                    $nombreImagen = $_FILES['imagen']['name'][$i];
+                    $rutaDestino = $rutaServidor."/".$nombreImagen;
+                    move_uploaded_file($rutaTemporal,$rutaDestino);
+                }
+                $conn->exec("INSERT INTO imagenesproductos VALUES (NULL, (SELECT id FROM productos ORDER BY id DESC LIMIT 1), '$nombreImagen', NULL,NULL)");
             }
-            $conn->exec("INSERT INTO imagenesproductos VALUES (NULL, (SELECT ID FROM PRODUCTOS ORDER BY id DESC LIMIT 1), '$nombreImagen', NULL,NULL)");
-            echo "Producto Insertado";
             header("location:index.php");
         } catch (PDOException $e) {
             echo "Error: ".$e->getMessage;

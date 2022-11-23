@@ -8,24 +8,24 @@
     </div>
     <div class="carousel-inner">
         <div class="carousel-item active">
-        <img src="../img/carousel3.jpg" class="d-block w-100" alt="..." height="800px">
+        <img src="../img/carousel3.jpeg" class="d-block w-100" alt="..." height="800px">
         <div class="carousel-caption d-none d-md-block">
-            <h5>First slide label</h5>
-            <p>Some representative placeholder content for the first slide.</p>
+            <h5>Agradecimiento club de lucha tazacorte</h5>
+            <p>Recordatorio al club de lucha Tazacorte temporada 2022-2023</p>
         </div>
         </div>
         <div class="carousel-item">
         <img src="../img/carousel2.jpeg" class="d-block w-100" alt="..." height="800px">
         <div class="carousel-caption d-none d-md-block">
-            <h5>Second slide label</h5>
-            <p>Some representative placeholder content for the second slide.</p>
+            <h5>Trofeo pachís fiestas de San Miguel</h5>
+            <p>Trofeo entregado al ayuntamiento de Tazacorte.</p>
         </div>
         </div>
         <div class="carousel-item">
-        <img src="../img/carousel.jpg" class="d-block w-100" alt="..." height="800px">
+        <img src="../img/carousel1.jpeg" class="d-block w-100" alt="..." height="800px">
         <div class="carousel-caption d-none d-md-block">
-            <h5>Third slide label</h5>
-            <p>Some representative placeholder content for the third slide.</p>
+            <h5>Trofeo TiroSub fiestas de San Miguel</h5>
+            <p>Trofeo para el ayuntamiento de Tazacorte por las fiestas locales.</p>
         </div>
         </div>
     </div>

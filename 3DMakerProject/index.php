@@ -3,7 +3,7 @@
     <?php include 'php/header.php'?>
     <!--Conexión a la base de datos-->
     <?php include 'php/connect.php'?>
-
+    <hr>
     <?php
         $peticion = $conn->query("SELECT * FROM productos  INNER JOIN imagenesproductos on productos.id = imagenesproductos.idproducto
         and productos.activado = 1 group BY `productos`.`id` DESC;");
@@ -55,8 +55,9 @@
     ?>
             </div>
         </div>
-
+    <hr>
     <!-- Cerramos la conexión con la base de datos -->
     <?php include 'php/close.php'?>
     <!--Incluimos el footer-->
     <?php include 'php/footer.php'?>
+

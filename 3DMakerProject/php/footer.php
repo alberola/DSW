@@ -1,5 +1,4 @@
-        <hr>
-        <div class="container-fluid text-center bg-light">
+        <div class="container-fluid text-center">
             <div class="row ">
                 <div class="offset-sm-0 offset-md-1 col-12 col-md-5">
                 <p class="h5 mb-3 pt-3">Donde localizarnos</p>
