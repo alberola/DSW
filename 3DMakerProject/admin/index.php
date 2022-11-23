@@ -37,7 +37,7 @@
         <label for="descripcion" class="text-center">Descripción</label> <br><br>
         <textarea name="descripcion" rows="5" cols="30" placeholder="Lorem Ipsum"></textarea> 
         <br><br>
-        <input type="file" name="imagen" id="imagen"><br><br>
+        <input type="file" name="imagen[]" id="imagen[]" multiple=""><br><br>
         <input type="submit" value="Insertar">
     </form>
 
@@ -60,8 +60,7 @@
 
     <br><br>
     <h2 class="m-2 text-center">Actualizar Datos</h2>
-    <form method="post" action="actualizarProducto.php" class="m-2 text-center" enctype="multipart/form-data">
-        <select name="productoActualizar" id="productosActualizar">
+        <select name="productoActualizar" id="productosActualizar" onclick="visualizarActualizar()">
             <option value="X" selected disabled>Producto a Actualizar</option>
             <?php 
                 $actualizar = $conn ->query("SELECT * FROM productos ORDER BY id DESC;"); 
@@ -72,7 +71,7 @@
         </select>
         <br><br>
         <div id="mostrarDatosActualizar" style="display:none;">
-            <form action="">
+            <form action="post">
                 <table class="table table-hover text-center">
                     <tr>
                         <th>Nombre</th>
@@ -81,13 +80,12 @@
                         <th>Descripción</th>
                         <th>Enviar</th>
                     </tr>
-                    <?php //$idActualizar = ?> <script type="text/javascript">productosActualizar.addEventListener('click', function (){return productosActualizar.value});</script> <?php//; ?>
-                    <?php $mostrarDatos = $conn ->query("SELECT * FROM productos WHERE id = $idActualizar ORDER BY id DESC;")
-                        //while ($tablaActualizar = $mostrarDatos->fetch(PDO::FETCH_BOTH /*FETCH_OBJ*/)){  
-                    ?>  
+                    <?php $idActualizar =  $_POST['productoActualizar']; echo $idActualizar;?> 
+
+                    <?php //$mostrarDatos = $conn ->query("SELECT * FROM productos WHERE id = $idActualizar ORDER BY id DESC;");?>  
                             <tr>
-                                <th><input type="text" name="nombreActualizar" value="<?php $tablaActualizar['nombre'];?>"></th>
-                                <th><input type="number" name="precioActualizar" value="<?php $tablaActualizar['precio'];?>"></th>
+                                <th><input type="text" name="nombreActualizar" value="Ejemplo<?php //$mostrarDatos['nombre'];?>"></th>
+                                <th><input type="number" name="precioActualizar" value="<?php //$mostrarDatos['precio'];?>"></th>
                                 <th>
                                 <select name="visibleActualizar" id="visible" required>
                                     <option value="0" selected disabled>Visible</option>
@@ -95,14 +93,12 @@
                                     <option value="0">No</option>
                                 </select>
                                 </th>
-                                <th><input type="text" name="descripcionActualizar" value="<?php $tablaActualizar['descripcion'];?>"></th>
+                                <th><input type="text" name="descripcionActualizar" value="<?php //$mostrarDatos['descripcion'];?>"></th>
                                 <th><input type="submit" value="Actualizar"></th>
                             </tr> 
-                    <?php // } ?>
                 </table>
             </form> 
         </div>
-    </form>
     <a href="../index.php" class="text-center m-2">Volver</a>
     <script src="../js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
