@@ -2,10 +2,11 @@
 
     include "../php/connect.php";
         try {
-            $nombre = $_POST['nombre'];
-            $descripcion  = $_POST['descripcion'];
-            $precio = $_POST['precio'];
-            $visible = $_POST['visible'];
+            
+            $nombre = $_POST['nombreActualizar'];
+            $descripcion  = $_POST['descripcionActualizar'];
+            $precio = $_POST['precioActualizar'];
+            $visible = $_POST['visibleActualizar'];
             $id = $_POST['idActualizar'];
 
             $sql = $conn->exec("UPDATE productos SET nombre = '$nombre', descripcion = '$descripcion', precio = $precio, activado = $visible WHERE id = $id;");

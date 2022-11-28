@@ -61,7 +61,6 @@
     <br><br>
     <h2 class="m-2 text-center">Actualizar Producto</h2>
         <div id="mostrarDatosActualizar">
-            <form action="post">
                 <table class="table table-hover text-center">
                     <tr>
                         <th>Nombre</th>
@@ -73,22 +72,26 @@
                     <?php $mostrarDatos = $conn ->query("SELECT * FROM productos ORDER BY id DESC;");
                         while ($mostrarActualizar = $mostrarDatos->fetch(PDO::FETCH_BOTH /*FETCH_OBJ*/)){  
                     ?>  
+                        <form method="post" action="actualizarProducto.php">
                             <tr>
                                 <th><input type="text" name="nombreActualizar" value="<?php echo $mostrarActualizar['nombre'];?>"></th>
                                 <th><input type="number" name="precioActualizar" value="<?php echo $mostrarActualizar['precio'];?>"></th>
                                 <th>
                                 <select name="visibleActualizar" id="visible" required>
-                                    <option value="1" selected disabled>¿Quieres hacerlo visible?</option>
-                                    <option value="1">Si</option>
+                                    <option value="1" disabled>¿Quieres hacerlo visible?</option>
+                                    <option value="1" selected>Si</option>
                                     <option value="0">No</option>
                                 </select>
                                 </th>
-                                <th><textarea name="descripcion" rows="3" cols="30"><?php echo $mostrarActualizar['descripcion'];?></textarea></th>
-                                <th><input type="submit" value="Actualizar"></th>
+                                <th><textarea name="descripcionActualizar" rows="3" cols="30"><?php echo $mostrarActualizar['descripcion'];?></textarea></th>
+                                <th>
+                                    <input type="hidden" name="idActualizar" value="<?php echo $mostrarActualizar['id'];?>">
+                                    <input type="submit" value="Actualizar" class="btn btn-dark">
+                                </th>
                             </tr> 
+                        </form>
                     <?php } ?>
                 </table>
-            </form> 
         </div>
     <div class="text-center"> <a href="../index.php" class="text-center m-4 btn btn-dark">Volver</a> </div>
 </div>
