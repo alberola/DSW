@@ -12,7 +12,7 @@
         }
         $sql = $conn->exec("DELETE FROM imagenesproductos WHERE idproducto = $id;");
         $sql = $conn->exec("DELETE FROM productos WHERE id = $id;");
-        header("location:index.php");
+        header("location:admin.php");
     } catch (Exception $e) {
         echo "Error: ".$e->getMessage;
         echo "No se ha podido borrar el producto";
