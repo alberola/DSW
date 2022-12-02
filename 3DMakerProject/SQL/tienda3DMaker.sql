@@ -13,15 +13,19 @@ CREATE TABLE IF NOT EXISTS `clientes` (
   `poblacion` varchar(255) DEFAULT NULL,
   `pais` varchar(255) DEFAULT NULL,
   `dninif` varchar(255) DEFAULT NULL,
+  `tipo` varchar(50),
   PRIMARY KEY (`id`)
 );
 
-INSERT INTO clientes (`id`, `nombre`, `apellidos`, `email`, `usuario`, `contrasena`, `telefono`, `direccioncalle`, `codigopostal`, `poblacion`, `pais`, `dninif`) VALUES
-(1, 'Jorge', 'Hernández', 'jorge.evagd@gmail.com', 'jorge', '1234', NULL, NULL, NULL, NULL, NULL, NULL),
-(2, 'Alejandro', 'Alberola', 'alejandroalberola140495@gmail.com', 'alejandrogp00', '123ale123', NULL, NULL, NULL, NULL, NULL, NULL);
+
+
+INSERT INTO clientes (`id`, `nombre`, `apellidos`, `email`, `usuario`, `contrasena`, `telefono`, `direccioncalle`, `codigopostal`, `poblacion`, `pais`, `dninif` , `tipo`) VALUES
+(1, 'Jorge', 'Hernández', 'jorge.evagd@gmail.com', 'jorge', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', NULL, NULL, NULL, NULL, NULL, NULL, 'admin'),
+(2, 'Alejandro', 'Alberola', 'alejandroalberola140495@gmail.com', 'alejandrogp00', 'd75f6eadd9345d5dc571fbd0c2ac4c8f1554fa67507653aad0cc1cd996c02be2', NULL, NULL, NULL, NULL, NULL, NULL, 'colaborador');
 
 CREATE TABLE IF NOT EXISTS `productos` (
   `id` int(100) NOT NULL AUTO_INCREMENT,
+  `idadmin` int(100),
   `nombre` varchar(255) DEFAULT NULL,
   `descripcion` varchar(255) DEFAULT NULL,
   `precio` decimal(30,2) DEFAULT NULL,
@@ -104,4 +108,5 @@ alter table pedidos add CONSTRAINT fk_ped_idc FOREIGN KEY (`idcliente`) REFERENC
 alter table imagenesproductos add CONSTRAINT fk_ima_idp FOREIGN KEY (`idproducto`) REFERENCES productos(`id`);
 alter table lineaspedido add CONSTRAINT fk_lin_idp FOREIGN KEY (`idpedido`) REFERENCES pedidos(`id`);
 alter table lineaspedido add CONSTRAINT fk_lin_idpr FOREIGN KEY (`idproducto`) REFERENCES productos(`id`);
+alter table productos add CONSTRAINT fk_pro_ida FOREIGN KEY (`idadmin`) REFERENCES clientes(`id`);
 

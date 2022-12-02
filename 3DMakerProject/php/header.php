@@ -26,7 +26,7 @@
                 </div>
             </div>
             <div class="d-flex" id="usuarios">
-                <a href="">
+                <a href="admin/index.php">
                     <img src="img/usuario.png" alt="" height="30px">
                 </a>
                 <a href="">

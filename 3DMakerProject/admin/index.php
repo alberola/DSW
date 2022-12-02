@@ -27,41 +27,29 @@
     </div>
 
     <?php 
-
+        
         if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+
             $usuario = $_POST['usuario'];
             $contrasena = hash('sha256', $_POST['contrasena']);
             
-            $_SERVER['PHP_AUTH_USER'] = $usuario;
-            $_SERVER['PHP_AUTH_PW'] = $contrasena;
             $consulta = $conn->query("SELECT * FROM clientes;");
             $controlador = false;
 
             while ( $resultado = $consulta->fetch(PDO::FETCH_BOTH /*FETCH_OBJ*/)){
-                if ( $resultado['usuario'] == $_SERVER['PHP_AUTH_USER'] && $resultado['contrasena'] == $_SERVER['PHP_AUTH_PW']){
+                if ( $resultado['usuario'] == $usuario && $resultado['contrasena'] == $contrasena && $resultado['tipo'] == 'admin'){
                     echo "<p class='text-center mt-5'>Login correcto :</p>";
-                    echo "<p class='text-center'>Usuario = ". $_SERVER['PHP_AUTH_USER']."</p>";
-                    echo "<p class='text-center'>Contraseña = ".$_SERVER['PHP_AUTH_PW']."</p>";
                     $controlador = true;
-                    //header("refresh:0.5;url=admin.php");
-
-                    //Para poner el formato fecha en castellano y recuperar fecha y hora de acceso
-                    date_default_timezone_set('Europe/Madrid');
-                    setlocale(LC_TIME, 'spanish');
-                    $ahora = new DateTime();
-                    $fecha = strftime("Tu última visita fué el %A, %d de %B de %Y a las %H:%M:%S",
-                    date_timestamp_get($ahora));
-                    // si existe la cookie recupero su valor
-                    if (isset($_COOKIE[$_SERVER['PHP_AUTH_USER']])) {
-                        $mensaje = $_COOKIE[$_SERVER['PHP_AUTH_USER']];
-                    } //si no existe es la primera visita para este usuario
-                    else {
-                        $mensaje = "Es la primera vez que visitas la página.";
-                    }
-                    //Creo o actualizo la cookie con la nueva fecha de acceso, la cookie durara una semana
-                    setcookie($_SERVER['PHP_AUTH_USER'], "$fecha", time() + 7 * 24 * 60 * 60);
-                    echo "<p class='text-center'>".$mensaje."</p>";
-                    break;
+                    header("refresh:0.5;url=admin.php");
+                } else if ($resultado['usuario'] == $usuario && $resultado['contrasena'] == $contrasena && $resultado['tipo'] == 'colaborador') {
+                    echo "<p class='text-center mt-5'>Login correcto :</p>";
+                    $controlador = true;
+                    echo "Bienvenido colaborador";
+                    header("refresh:3;url=admin.php");
+                } else if ($resultado['usuario'] == $usuario && $resultado['contrasena'] == $contrasena && $resultado['tipo'] == 'registrado'){
+                    echo "<p class='text-center mt-5'>Login correcto :</p>";
+                    $controlador = true;
+                    header("refresh:0.5;url=../index.php");
                 }
             }
             if (!$controlador){
