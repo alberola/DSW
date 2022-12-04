@@ -5,6 +5,7 @@
     <?php include 'php/connect.php'?>
     <hr>
     <?php
+        session_start();
         $peticion = $conn->query("SELECT * FROM productos  INNER JOIN imagenesproductos on productos.id = imagenesproductos.idproducto
         and productos.activado = 1 group BY `productos`.`id` DESC;");
         $auxCarousel = 0;

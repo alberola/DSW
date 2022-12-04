@@ -2,6 +2,11 @@
     <h1 class="display-6 text-center">Panel de Control</h1>
 <div class="container">
 <?php
+    session_start();
+    if (!isset($_SESSION['tipo'])) {
+        header("location: ../index.php");
+    } 
+    echo ($_SESSION['tipo']);
     include '../php/connect.php';
     $consulta = $conn->query("SELECT * FROM productos;");
         echo "<table class='table table-hover text-center'>
@@ -93,7 +98,8 @@
                     <?php } ?>
                 </table>
         </div>
-    <div class="text-center"> <a href="../index.php" class="text-center m-4 btn btn-dark">Cerrar Sesión</a> </div>
+    <div class="text-center"> <a href="cerrarSesion.php" class="text-center m-4 btn btn-dark">Cerrar Sesión</a> </div>
+    <div class="text-center"> <a href="../index.php" class="text-center m-4 btn btn-dark">Volver</a> </div>
 </div>
     <script src="../js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>

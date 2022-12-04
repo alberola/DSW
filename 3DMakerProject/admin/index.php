@@ -27,35 +27,40 @@
     </div>
 
     <?php 
-        
+        session_start();
+        if (isset($_SESSION['tipo'])){
+            header("location: admin.php");
+        }
         if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 
-            $usuario = $_POST['usuario'];
-            $contrasena = hash('sha256', $_POST['contrasena']);
-            
-            $consulta = $conn->query("SELECT * FROM clientes;");
-            $controlador = false;
+                $usuario = $_POST['usuario'];
+                $contrasena = hash('sha256', $_POST['contrasena']);
+                
+                $consulta = $conn->query("SELECT * FROM clientes;");
+                $controlador = false;
 
-            while ( $resultado = $consulta->fetch(PDO::FETCH_BOTH /*FETCH_OBJ*/)){
-                if ( $resultado['usuario'] == $usuario && $resultado['contrasena'] == $contrasena && $resultado['tipo'] == 'admin'){
-                    echo "<p class='text-center mt-5'>Login correcto :</p>";
-                    $controlador = true;
-                    header("refresh:0.5;url=admin.php");
-                } else if ($resultado['usuario'] == $usuario && $resultado['contrasena'] == $contrasena && $resultado['tipo'] == 'colaborador') {
-                    echo "<p class='text-center mt-5'>Login correcto :</p>";
-                    $controlador = true;
-                    echo "Bienvenido colaborador";
-                    header("refresh:3;url=admin.php");
-                } else if ($resultado['usuario'] == $usuario && $resultado['contrasena'] == $contrasena && $resultado['tipo'] == 'registrado'){
-                    echo "<p class='text-center mt-5'>Login correcto :</p>";
-                    $controlador = true;
-                    header("refresh:0.5;url=../index.php");
+                while ( $resultado = $consulta->fetch(PDO::FETCH_BOTH /*FETCH_OBJ*/)){
+                    if ( $resultado['usuario'] == $usuario && $resultado['contrasena'] == $contrasena && $resultado['tipo'] == 'admin'){
+                        $_SESSION['tipo'] = $resultado['tipo'];
+                        echo "<p class='text-center mt-5'>Login correcto :</p>";
+                        $controlador = true;
+                        header("refresh:0.5;url=admin.php");
+                    } else if ($resultado['usuario'] == $usuario && $resultado['contrasena'] == $contrasena && $resultado['tipo'] == 'colaborador') {
+                        $_SESSION['tipo'] = $resultado['tipo'];
+                        echo "<p class='text-center mt-5'>Login correcto :</p>";
+                        $controlador = true;
+                        echo "Bienvenido colaborador";
+                        header("refresh:3;url=admin.php");
+                    } else if ($resultado['usuario'] == $usuario && $resultado['contrasena'] == $contrasena && $resultado['tipo'] == 'registrado'){
+                        echo "<p class='text-center mt-5'>Login correcto :</p>";
+                        $controlador = true;
+                        header("refresh:0.5;url=../index.php");
+                    }
+                }
+                if (!$controlador){
+                    echo "<p class='text-center mt-5'>Datos incorrectos.</p>";
                 }
             }
-            if (!$controlador){
-                echo "<p class='text-center mt-5'>Datos incorrectos.</p>";
-            }
-        }
 
         include '../php/close.php';
     
