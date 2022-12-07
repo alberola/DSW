@@ -20,22 +20,13 @@ hr{
     transition: all 1.5s;
 }
 
-.navbar-nav{
-    margin-left: 10%;
-}
-.navbar-nav a{
-    margin-right: 50%;
-   
-}
-.navbar-brand{
-    margin-left: 10%;
-}
-i{
-    margin-right: 10%;
-}
-#usuarios{
-    margin-right: 5%;
-}
-#usuarios a{
-    margin: 5%;
+.my-nav{
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+} 
+.my-footer{
+    position: absolute;
+    z-index: 1;
+    width: 100%;
 }
