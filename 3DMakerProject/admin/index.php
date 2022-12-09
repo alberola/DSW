@@ -62,20 +62,17 @@
                     $_SESSION['usuario'] = $resultado['usuario'];
                     $_SESSION['id'] = $resultado['id'];
                     $_SESSION['tipo'] = $resultado['tipo'];
-                    echo "<p class='text-center mt-5'>Login correcto :</p>";
                     $controlador = true;
                     header("refresh:0.5;url=admin.php");
                 } else if ($resultado['usuario'] == $usuario && $resultado['contrasena'] == $contrasena && $resultado['tipo'] == 'colaborador') {
                     $_SESSION['usuario'] = $resultado['usuario'];
                     $_SESSION['id'] = $resultado['id'];
                     $_SESSION['tipo'] = $resultado['tipo'];
-                    echo "<p class='text-center mt-5'>Login correcto :</p>";
                     $controlador = true;
                     header("refresh:0.5;url=colaborador.php");
                 } else if ($resultado['usuario'] == $usuario && $resultado['contrasena'] == $contrasena && $resultado['tipo'] == 'cliente'){
                     $_SESSION['usuario'] = $resultado['usuario'];
                     $_SESSION['tipo'] = $resultado['tipo'];
-                    echo "<p class='text-center mt-5'>Login correcto :</p>";
                     $controlador = true;
                     header("refresh:0.5;url=../index.php");
                 }
