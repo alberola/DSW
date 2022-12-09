@@ -16,6 +16,9 @@
     if (!isset($_SESSION['usuario'])) {
         header("location: ../index.php");
     } 
+    if ($_SESSION['tipo'] == 'colaborador'){
+        header("location:colaborador.php");
+    }
     include '../php/connect.php';
 ?>
 <div class="container-fluid">
@@ -109,7 +112,7 @@
                 ?>
                 </table>
             </div>
-            <div class="col-6 col-md-12  mt-5" id="anadirProductos">
+            <div class="col-12  mt-5" id="anadirProductos">
                 <h2 class=" text-center">Añadir Productos</h2>
                 <form method="post" action="insertarProducto.php" name="submit" enctype="multipart/form-data">
                     <h5><label for="nombre" class="form-label">Nombre</label></h5>
@@ -127,7 +130,7 @@
                     <input type="submit" value="Insertar" class="btn btn-dark">
                 </form>
             </div>
-            <div class="col-6 col-md-12 mt-5" id="borrarProductos">
+            <div class="col-12 mt-5" id="borrarProductos">
                 <h2 class="m-2 text-center">Borrar Productos</h2>
                 <form action="borrarProducto.php" class="text-center" method="post">
                 <?php 
@@ -144,7 +147,7 @@
                     <input type="submit" value="Borrar" class="btn btn-dark">
                 </form>
             </div>
-            <div class="col-6 col-md-12 mt-5" id="actualizarProductos">
+            <div class="col-12 mt-5" id="actualizarProductos">
                 <h2 class="text-center">Actualizar Producto</h2>
                 <table class="table table-hover text-center">
                     <tr>
@@ -178,7 +181,7 @@
                     <?php } ?>
                 </table>
             </div>
-            <div class="col-6 col-md-12 mt-5" id="mostrarUsuarios">
+            <div class="col-12 mt-5" id="mostrarUsuarios">
                 <h2 class="text-center">Administradores</h2>
                 <?php
                     include '../php/connect.php';
@@ -223,7 +226,7 @@
                     <input type="submit" value="Crear" class="btn btn-dark">
                 </form>
             </div>
-            <div class="col-6 col-md-12 mt-5" id="borrarUsuarios">
+            <div class="col-12 mt-5" id="borrarUsuarios">
                 <h2 class="m-2 text-center">Borrar Usuarios</h2>
                 <form action="borrarUsuario.php" class="text-center" method="post">
                 <?php 
@@ -231,7 +234,7 @@
                     $borrar = $conn ->query("SELECT id, usuario FROM clientes WHERE tipo like 'admin' or tipo like 'colaborador';");
                 ?>
                     <select name="usuarioBorrar" class="form-select">
-                        <option value="X" selected disabled>Administrador a Borrar</option>
+                        <option value="X" selected disabled>Usuario a Borrar</option>
                         <?php while ($borrado = $borrar->fetch(PDO::FETCH_BOTH /*FETCH_OBJ*/)){ ?>
                             <option value="<?php echo $borrado['id']?>"><?php echo $borrado['usuario']?></option>
                         <?php } ?>
@@ -240,7 +243,7 @@
                     <input type="submit" value="Borrar" class="btn btn-dark">
                 </form>
             </div>
-            <div class="col-6 col-md-12 mt-5" id="actualizarUsuarios">
+            <div class="col-12 mt-5" id="actualizarUsuarios">
                 <h2 class="text-center">Actualizar Usuarios</h2>
                 <table class="table table-hover text-center">
                     <tr>

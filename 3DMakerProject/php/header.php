@@ -39,9 +39,9 @@
                             </a>
                             <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
                                 <?php
-                                    if ($_SESSION['tipo'] = 'admin'){
+                                    if ($_SESSION['tipo'] == 'admin'){
                                         echo "<li><a class='dropdown-item' href='admin/admin.php'>Panel de Control</a></li>";
-                                    } else if ($_SESSION['tipo'] = 'colaborador'){
+                                    } else if ($_SESSION['tipo'] == 'colaborador'){
                                         echo "<li><a class='dropdown-item' href='admin/colaborador.php'>Panel de Control</a></li>";
                                     }
                                 ?>

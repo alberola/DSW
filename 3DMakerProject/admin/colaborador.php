@@ -91,7 +91,7 @@
                 ?>
                 </table>
             </div>
-            <div class="col-6 col-md-12  mt-5" id="anadirProductos">
+            <div class="col-12  mt-5" id="anadirProductos">
                 <h2 class=" text-center">Añadir Productos</h2>
                 <form method="post" action="insertarProducto.php" name="submit" enctype="multipart/form-data">
                     <h5><label for="nombre" class="form-label">Nombre</label></h5>
@@ -99,8 +99,8 @@
                     <h5><label for="precio" class="form-label">Precio</label></h5>
                     <input type="number" name="precio" class="form-control"><br><br>
                     <h6><label for="visible" class="form-label">¿Quieres hacerlo visible?</label></h6>
-                    <input type="radio" name="visible" value="1" checked class="form-check-input btn-outline-dark">Si
-                    <input type="radio" name="visible" value="0" class="form-check-input">No
+                    <input type="radio" name="visible" value="1" disabled class="form-check-input ">Si
+                    <input type="radio" name="visible" value="0" checked disabled class="form-check-input">No
                     <br><br>
                     <h5><label for="descripcion" class="form-label">Descripcion</label></h5>
                     <textarea name="descripcion" rows="5" cols="30" placeholder="Lorem Ipsum" class="form-control"></textarea> 
@@ -109,12 +109,12 @@
                     <input type="submit" value="Insertar" class="btn btn-dark">
                 </form>
             </div>
-            <div class="col-6 col-md-12 mt-5" id="borrarProductos">
+            <div class="col-12 mt-5" id="borrarProductos">
                 <h2 class="m-2 text-center">Borrar Productos</h2>
                 <form action="borrarProducto.php" class="text-center" method="post">
                 <?php 
                     //Select para poder cargar todos los productos a borrar  
-                    $borrar = $conn ->query("SELECT * FROM productos ORDER BY id DESC;");
+                    $borrar = $conn ->query("SELECT productos.id, productos.nombre FROM productos INNER JOIN clientes on productos.idadmin = clientes.id and clientes.tipo like 'colaborador';");
                 ?>
                     <select name="productoBorrar" id="productos" class="form-select">
                         <option value="X" selected disabled>Producto a Borrar</option>
@@ -126,7 +126,7 @@
                     <input type="submit" value="Borrar" class="btn btn-dark">
                 </form>
             </div>
-            <div class="col-6 col-md-12 mt-5" id="actualizarProductos">
+            <div class="col-12 mt-5" id="actualizarProductos">
                 <h2 class="text-center">Actualizar Producto</h2>
                 <table class="table table-hover text-center">
                     <tr>
@@ -136,7 +136,7 @@
                         <th>Descripción</th>
                         <th>Enviar</th>
                     </tr>
-                    <?php $mostrarDatos = $conn ->query("SELECT * FROM productos ORDER BY id DESC;");
+                    <?php $mostrarDatos = $conn ->query("SELECT productos.id, productos.nombre,productos.precio, productos.activado, productos.descripcion FROM productos INNER JOIN clientes on productos.idadmin = clientes.id and clientes.tipo like 'colaborador';");
                         while ($mostrarActualizar = $mostrarDatos->fetch(PDO::FETCH_BOTH /*FETCH_OBJ*/)){  
                     ?>  
                         <form method="post" action="actualizarProducto.php">
@@ -146,7 +146,7 @@
                                 <th>
                                 <select name="visibleActualizar" class="form-select" required>
                                     <option value="1" disabled>¿Quieres hacerlo visible?</option>
-                                    <option value="1" <?php if ($mostrarActualizar['activado'] == 1 ) { echo "selected";}  ?> >Si</option>
+                                    <option value="1" disabled <?php if ($mostrarActualizar['activado'] == 1 ) { echo "selected";}  ?> >Si</option>
                                     <option value="0" <?php if ($mostrarActualizar['activado'] == 0 ) { echo "selected";} ?> >No</option>
                                 </select>
                                 </th>
@@ -163,7 +163,7 @@
         </div>
 </div>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
-<script src="../js/admin.js"></script>
+<script src="../js/colaborador.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 <?php include '../php/close.php'; ?>
 </body>

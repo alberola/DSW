@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS `clientes` (
 
 INSERT INTO clientes (`id`, `nombre`, `apellidos`, `email`, `usuario`, `contrasena`, `telefono`, `direccioncalle`, `codigopostal`, `poblacion`, `pais`, `dninif` , `tipo`) VALUES
 (1, 'Jorge', 'Hernández', 'jorge.evagd@gmail.com', 'jorge', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', NULL, NULL, NULL, NULL, NULL, NULL, 'admin'),
-(2, 'Alejandro', 'Alberola', 'alejandroalberola140495@gmail.com', 'alejandrogp00', 'd75f6eadd9345d5dc571fbd0c2ac4c8f1554fa67507653aad0cc1cd996c02be2', NULL, NULL, NULL, NULL, NULL, NULL, 'colaborador');
+(2, 'Alejandro', 'Alberola', 'alejandroalberola140495@gmail.com', 'alejandrogp00', 'd75f6eadd9345d5dc571fbd0c2ac4c8f1554fa67507653aad0cc1cd996c02be2', NULL, NULL, NULL, NULL, NULL, NULL, 'admin');
 
 CREATE TABLE IF NOT EXISTS `productos` (
   `id` int(100) NOT NULL AUTO_INCREMENT,
@@ -33,15 +33,15 @@ CREATE TABLE IF NOT EXISTS `productos` (
   PRIMARY KEY (`id`)
 );
 
-insert into productos (`id`,`nombre`, `descripcion`, `precio`, `activado`) VALUES
- (1,'Lámpara Luna','Lámpara para decoración con fotos en forma de luna', 30.00, 1),
- (2,'Cuadros Decoración','Cuadros en 3D para decorar tu habitación ', 20.00, 1),
- (3,'Cubre faros Hella Xr2i','Tapa faros antiniebla para ford Xr2i', 15.00, 1),
- (4,'Trofeos de temática personalizada','Trofeos en base de piedra con diseño personalizado según la disciplina ', 25.00, 1),
- (5,'Reconocimientos Grabados en láser ','Reconocimientos en base de piedra con diseño personalizado según la disciplina ', 10.00, 1),
- (6,'Miniaturas  y Warhammer','Figuras de hasta 15 cm de altura hechas en resina con una alta resolución', 20.00, 1),
- (7,'Adornos de Navidad ','Figuras, nombres y decoración para tu árbol de navidad', 5.00, 1),
- (8,'Lámpara cubo ','Lámparas personalizadas con tus fotos favoritas.', 35.00, 1);
+insert into productos (`id`,`idadmin`,`nombre`, `descripcion`, `precio`, `activado`) VALUES
+ (1,2,'Lámpara Luna','Lámpara para decoración con fotos en forma de luna', 30.00, 1),
+ (2,2,'Cuadros Decoración','Cuadros en 3D para decorar tu habitación ', 20.00, 1),
+ (3,2,'Cubre faros Hella Xr2i','Tapa faros antiniebla para ford Xr2i', 15.00, 1),
+ (4,2,'Trofeos de temática personalizada','Trofeos en base de piedra con diseño personalizado según la disciplina ', 25.00, 1),
+ (5,2,'Reconocimientos Grabados en láser ','Reconocimientos en base de piedra con diseño personalizado según la disciplina ', 10.00, 1),
+ (6,2,'Miniaturas  y Warhammer','Figuras de hasta 15 cm de altura hechas en resina con una alta resolución', 20.00, 1),
+ (7,2,'Adornos de Navidad ','Figuras, nombres y decoración para tu árbol de navidad', 5.00, 1),
+ (8,2,'Lámpara cubo ','Lámparas personalizadas con tus fotos favoritas.', 35.00, 1);
 
 
 CREATE TABLE IF NOT EXISTS `imagenesproductos` (
