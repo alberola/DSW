@@ -1,8 +1,15 @@
 <?php
-     
+     session_start();
+     if (!isset($_SESSION['usuario'])) {
+         header("location: ../index.php");
+     } 
     include  "../php/connect.php";
 
     try {
+        //Para que no de errores comprobamos si se ha pulsado sin seleccionar ningún producto
+        if ($_POST['productoBorrar'] == 'X'){
+            header("location:pruebaMenu.php");
+        }
         $id = $_POST['productoBorrar'];
         $unLinkPhoto = $conn->query("SELECT imagen FROM imagenesproductos WHERE idproducto = $id;");
         while ($unLink = $unLinkPhoto->fetch (PDO::FETCH_BOTH /*FETCH_OBJ*/)){

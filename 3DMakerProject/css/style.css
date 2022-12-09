@@ -1,6 +1,12 @@
 *{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
+body{
+    background-image: url(../img/superior.png),url(../img/inferior.png);
+    background-position: top, bottom;
+    background-size: contain,contain;
+    background-repeat: no-repeat;
+}
 hr{
     margin-left: 10%;
     margin-right: 10%;
@@ -12,21 +18,4 @@ hr{
 #imgCard:hover{
     opacity: 0.8;
     transition: all 1.5s;
-}
-#producto{
-    transition: all 1.5s;
-}
-#imgCard{
-    transition: all 1.5s;
-}
-
-.my-nav{
-    position: absolute;
-    z-index: 1;
-    width: 100%;
-} 
-.my-footer{
-    position: absolute;
-    z-index: 1;
-    width: 100%;
 }

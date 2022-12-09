@@ -5,21 +5,20 @@
     <?php include 'php/connect.php'?>
     <hr>
     <?php
-        session_start();
         $peticion = $conn->query("SELECT * FROM productos  INNER JOIN imagenesproductos on productos.id = imagenesproductos.idproducto
         and productos.activado = 1 group BY `productos`.`id` DESC;");
         $auxCarousel = 0;
     ?>
-        <div class="container mt-5 mb-3 mt-3">
+        <div class="container mt-5 mb-3">
             <div class="row">
     <?php while ($registro = $peticion ->fetch(PDO::FETCH_BOTH /*FETCH_OBJ*/)) {?>
                 <div class="col-sm-12 col-md-4 mb-5 "id="producto" >
                     <div class='card-group'>
-                        <div class='card ms-4 text-center img-fluid shadow' style="height:575px"> 
+                        <div class='card ms-4 text-center img-fluid shadow' > 
                             <div id="carouselExampleControls<?php echo $auxCarousel;?>" class="carousel slide" data-bs-interval="false" data-ride="carousel" data-pause="hover">
                                 <div class="carousel-inner">
                                     <div class="carousel-item active">
-                                        <img src="photo/<?php echo $registro['imagen']; ?>" class='card-img-top' alt="Imagen Producto" style="height: 350px" id="imgCard">
+                                        <img src="photo/<?php echo $registro['imagen']; ?>" class='card-img-top' alt="Imagen Producto" style="height: 18rem" id="imgCard">
                                     </div>
                                     <?php 
                                         $aux = $registro['idproducto'];
@@ -28,7 +27,7 @@
                                         while ($registroImagenes = $imagenes ->fetch(PDO::FETCH_BOTH /*FETCH_OBJ*/)) {
                                     ?>
                                     <div class="carousel-item">
-                                        <img src="photo/<?php echo $registroImagenes['imagen']; ?>" class='card-img-top' alt="Imagen Producto" style="height: 350px" id="imgCard">
+                                        <img src="photo/<?php echo $registroImagenes['imagen']; ?>" class='card-img-top' alt="Imagen Producto" style="height: 18rem" id="imgCard">
                                     </div>
                                     <?php } ?>
                                 </div>
@@ -43,7 +42,6 @@
                             </div>
                             <div class='card-body'>
                                 <h5 class="card-tittle"> <?php echo $registro["nombre"]; ?> </h5> 
-                                <p class='card-text'> <?php echo $registro["descripcion"]; ?> </p>
                                 <p class='card-price'> <?php echo $registro["precio"]; ?> €</p>
                                 <a href='#' class='btn btn-dark'>Realizar Pedido</a>
                             </div>

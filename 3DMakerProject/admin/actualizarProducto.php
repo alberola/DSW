@@ -1,13 +1,25 @@
 <?php
-
+    session_start();
+    if (!isset($_SESSION['usuario'])) {
+        header("location: ../index.php");
+    } 
     include "../php/connect.php";
         try {
             
-            $nombre = $_POST['nombreActualizar'];
-            $descripcion  = $_POST['descripcionActualizar'];
-            $precio = $_POST['precioActualizar'];
-            $visible = $_POST['visibleActualizar'];
-            $id = $_POST['idActualizar'];
+            function limpiar($data){
+                $data = trim($data);
+                $data = htmlentities($data);
+                $data = htmlspecialchars($data);
+                $data = stripslashes($data);
+                return $data;
+            }
+
+            $nombre = limpiar($_POST['nombreActualizar']);
+            $descripcion  = limpiar($_POST['descripcionActualizar']);
+            $precio = limpiar($_POST['precioActualizar']);
+            $visible = limpiar($_POST['visibleActualizar']);
+            $id = limpiar($_POST['idActualizar']);
+
 
             $sql = $conn->exec("UPDATE productos SET nombre = '$nombre', descripcion = '$descripcion', precio = $precio, activado = $visible WHERE id = $id;");
 

@@ -1,12 +1,27 @@
 <?php 
+    session_start();
+    if (!isset($_SESSION['usuario'])) {
+        header("location: ../index.php");
+    } 
     include "../php/connect.php";
         try {
-            $nombre = $_POST['nombre'];
-            $descripcion  = $_POST['descripcion'];
-            $precio = $_POST['precio'];
-            $visible = $_POST['visible'];
 
-            $sql = $conn->prepare("INSERT INTO productos VALUES (null, '$nombre','$descripcion', '$precio', '$visible')");
+            function limpiar($data){
+                $data = trim($data);
+                $data = htmlentities($data);
+                $data = htmlspecialchars($data);
+                $data = stripslashes($data);
+                return $data;
+            }
+
+            $nombre = limpiar($_POST['nombre']);
+            $descripcion  = limpiar($_POST['descripcion']);
+            $precio = limpiar($_POST['precio']);
+            $visible = limpiar($_POST['visible']);
+            //Variable auxiliar para llevarnos variable de sesion id de usuario que inserta articulo
+            $idAdmin = $_SESSION['id'];
+
+            $sql = $conn->prepare("INSERT INTO productos VALUES (NULL, '$idAdmin', '$nombre','$descripcion', '$precio', '$visible')");
             $sql->execute();
             
             $bucle = count($_FILES['imagen']['tmp_name']);
@@ -22,7 +37,7 @@
                 }
                 $conn->exec("INSERT INTO imagenesproductos VALUES (NULL, (SELECT id FROM productos ORDER BY id DESC LIMIT 1), '$nombreImagen', NULL,NULL)");
             }
-            header("location:index.php");
+            header("location:admin.php");
         } catch (PDOException $e) {
             echo "Error: ".$e->getMessage;
         }

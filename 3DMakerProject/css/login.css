@@ -1,0 +1,15 @@
+.caja{
+    margin-top: 15%;
+}
+body{
+    background-image: url(../img/superior.png);
+    background-position: top;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+#imagen{
+    margin-top: 30%;
+}
+.cajaRegistro{
+    margin-top: 5%;
+}
