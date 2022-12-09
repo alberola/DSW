@@ -62,6 +62,7 @@
             //Imprimirá si se ha realizado correctamente
             echo "Tablas creadas a partir del archivo ". $sqlpath . " <br>";
             echo "Instalación completada correctamente</span>";
+            header("refresh:1;url=../index.php");
         } catch (PDOException $e) {
             echo "<span style='color:red;'>Error:". $e->getmessage()."</span><br>";
         }
