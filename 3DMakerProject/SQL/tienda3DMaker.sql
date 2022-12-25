@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS `clientes` (
   `nombre` varchar(255) DEFAULT NULL,
   `apellidos` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
-  `usuario` varchar(255) DEFAULT NULL,
+  `usuario` varchar(255) DEFAULT NULL unique,
   `contrasena` varchar(255) DEFAULT NULL,
   `telefono` int(12) DEFAULT NULL,
   `direccioncalle` varchar(255) DEFAULT NULL,

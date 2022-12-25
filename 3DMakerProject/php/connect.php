@@ -2,7 +2,7 @@
 <?php
     $servername = 'localhost';
     $username = 'admin';
-    $password = 'admin1234';
+    $password = '1234';
     $dbname = '3dmakerProject';
     try{
         $conn = new PDO("mysql:host=$servername; dbname=$dbname", $username, $password);

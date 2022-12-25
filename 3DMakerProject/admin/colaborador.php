@@ -13,9 +13,12 @@
 <body>
 <?php 
     session_start();
-    if (!isset($_SESSION['usuario'])) {
+    if (!(isset($_SESSION['usuario'])) || $_SESSION['tipo'] == 'cliente') {
         header("location: ../index.php");
     } 
+    if ($_SESSION['tipo'] == 'admin'){
+        header("location:admin.php");
+    }
     include '../php/connect.php';
 ?>
 <div class="container-fluid">
@@ -42,10 +45,6 @@
                                 <a href="#" class="nav-link px-0 text-white" onclick="actualizarProductosDiv()"> <span class="d-none d-sm-inline text-white">Actualizar Productos</span> 4</a>
                             </li>
                         </ul>
-                    </li>
-                    <li>
-                        <a href="#" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-table text-white"></i> <span class="ms-1 d-none d-sm-inline text-white">Pedidos</span></a>
                     </li>
                 </ul>
                 <hr>

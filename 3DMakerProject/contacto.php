@@ -6,7 +6,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <form class="mb-5 mt-5" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+                <form class="mb-5 mt-5 mx-5" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                     <div class="mb-3">
                       <h5><label for="correo" class="form-label">Email</label></h5>
                       <input type="email" class="form-control" id="email" name="email" autocomplete="off" required>
@@ -30,11 +30,20 @@
     <?php 
     if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 
+
+      function limpiar($data){
+        $data = trim($data);
+        $data = htmlentities($data);
+        $data = htmlspecialchars($data);
+        $data = stripslashes($data);
+        return $data;
+      }
+
       $destinatario = 'alejandroalberola140495@gmail.com';
 
-      $asunto = $_POST['asunto'];
-      $email = $_POST['email'];
-      $mensaje = $_POST['mensaje'];
+      $asunto = limpiar($_POST['asunto']);
+      $email = limpiar($_POST['email']);
+      $mensaje = limpiar($_POST['mensaje']);
       $header = "Mensaje enviado desde la página de 3DMakerProject";
 
       $contenido = "Email: ". $email."\nMensaje: ". $mensaje."\n\n".$header;

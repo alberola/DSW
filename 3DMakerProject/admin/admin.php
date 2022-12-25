@@ -13,7 +13,7 @@
 <body>
 <?php 
     session_start();
-    if (!isset($_SESSION['usuario'])) {
+    if (!(isset($_SESSION['usuario'])) || $_SESSION['tipo'] == 'cliente') {
         header("location: ../index.php");
     } 
     if ($_SESSION['tipo'] == 'colaborador'){
@@ -33,13 +33,13 @@
                             <i class="fs-4 bi-speedometer2 text-white"></i> <span class="ms-1 d-none d-sm-inline text-white">Productos</span> </a>
                         <ul class="collapse show nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
                             <li class="w-100">
-                                <a href="#" class="nav-link px-0 text-white" onclick="mostrarProductosDiv()"> <span class="d-none d-sm-inline text-white">Mostrar Productos</span> 1</a>
+                                <a href="#" class="nav-link px-0 text-white" onclick="mostrarProductosDiv()"> <span class="d-none d-sm-inline text-white">Mostrar Productos</span> <i class="bi bi-table"></i></a>
                             </li>
                             <li>
-                                <a href="#" class="nav-link px-0 text-white" onclick="anadirProductosDiv()"> <span class="d-none d-sm-inline text-white">Añadir Productos</span> 2</a>
+                                <a href="#" class="nav-link px-0 text-white" onclick="anadirProductosDiv()"> <span class="d-none d-sm-inline text-white">Añadir Productos</span> <i class="bi bi-plus"></i></a>
                             </li>
                             <li>
-                                <a href="#" class="nav-link px-0 text-white" onclick="borrarProductosDiv()"> <span class="d-none d-sm-inline text-white">Borrar Productos</span> 3</a>
+                                <a href="#" class="nav-link px-0 text-white" onclick="borrarProductosDiv()"> <span class="d-none d-sm-inline text-white">Borrar Productos</span><i class="bi bi-trash"></i></a>
                             </li>
                             <li>
                                 <a href="#" class="nav-link px-0 text-white" onclick="actualizarProductosDiv()"> <span class="d-none d-sm-inline text-white">Actualizar Productos</span> 4</a>
@@ -55,13 +55,13 @@
                             <i class="fs-4 bi-people text-white"></i> <span class="ms-1 d-none d-sm-inline text-white">Usuarios</span> </a>
                             <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
                             <li class="w-100">
-                                <a href="#" class="nav-link px-0 text-white" onclick="mostrarUsuariosDiv()"> <span class="d-none d-sm-inline text-white">Mostrar Usuarios</span> 1</a>
+                                <a href="#" class="nav-link px-0 text-white" onclick="mostrarUsuariosDiv()"> <span class="d-none d-sm-inline text-white">Mostrar Usuarios</span> <i class="bi bi-table"></i></a>
                             </li>
                             <li>
-                                <a href="#" class="nav-link px-0 text-white" onclick="anadirUsuariosDiv()"> <span class="d-none d-sm-inline text-white">Añadir Usuarios</span> 2</a>
+                                <a href="#" class="nav-link px-0 text-white" onclick="anadirUsuariosDiv()"> <span class="d-none d-sm-inline text-white">Añadir Usuarios</span><i class="bi bi-plus"></i></a>
                             </li>
                             <li>
-                                <a href="#" class="nav-link px-0 text-white" onclick="borrarUsuariosDiv()"> <span class="d-none d-sm-inline text-white">Borrar Usuarios</span> 3</a>
+                                <a href="#" class="nav-link px-0 text-white" onclick="borrarUsuariosDiv()"> <span class="d-none d-sm-inline text-white">Borrar Usuarios</span><i class="bi bi-trash"></i></a>
                             </li>
                             <li>
                                 <a href="#" class="nav-link px-0 text-white" onclick="actualizarUsuariosDiv()"> <span class="d-none d-sm-inline text-white">Actualizar Permisos</span> 4</a>
@@ -85,13 +85,13 @@
                 </div>
             </div>
         </div>
-        <div class="col py-3" id="prueba">
+        <div class="col py-3 mx-5" id="prueba">
             <div class="col-6 col-md-12 mt-5" id="mostrarProductos">
                 <?php
                     include '../php/connect.php';
                     $consulta = $conn->query("SELECT * FROM productos;");
                     ?>
-                <table class='table table-hover text-center'>
+                <table class='table table-hover'>
                     <tr>
                         <th>Nombre</th>
                         <th>Descripcion</th>

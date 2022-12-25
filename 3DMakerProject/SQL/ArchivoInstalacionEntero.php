@@ -12,7 +12,7 @@
     $dbname = "3DMakerProject";
     //Variables de usuario admin para trabajar con el
     $adminUserName = "admin";
-    $adminPassword = "admin1234";
+    $adminPassword = "1234";
 
     //Ruta del archivo sql el que posee tablas y datos de las mismas.
     $sqlpath = "tienda3DMaker.sql";

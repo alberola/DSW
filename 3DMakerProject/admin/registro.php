@@ -122,6 +122,15 @@
                     }, 500);
                 </script>";
 
+            //Script para notificar que el usuario se ha insertado correctamente.
+            echo "<script>
+                Swal.fire({
+                  icon: 'sucess',
+                  title: 'Usuario insertado correctamente',
+                  confirmButtonColor: '#2b2b2a', 
+                })
+              </script>";
+
             } catch (PDOException $e) {
                 echo "Error: ".$e->getMessage;
             }
