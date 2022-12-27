@@ -42,14 +42,11 @@
                                 <a href="#" class="nav-link px-0 text-white" onclick="borrarProductosDiv()"> <span class="d-none d-sm-inline text-white">Borrar Productos</span><i class="bi bi-trash"></i></a>
                             </li>
                             <li>
-                                <a href="#" class="nav-link px-0 text-white" onclick="actualizarProductosDiv()"> <span class="d-none d-sm-inline text-white">Actualizar Productos</span> 4</a>
+                                <a href="#" class="nav-link px-0 text-white" onclick="actualizarProductosDiv()"> <span class="d-none d-sm-inline text-white">Actualizar Productos</span> <i class="bi bi-chevron-bar-contract"></i></a>
                             </li>
                         </ul>
                     </li>
-                    <li>
-                        <a href="#" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-table text-white"></i> <span class="ms-1 d-none d-sm-inline text-white">Pedidos</span></a>
-                    </li>
+                    
                     <li>
                         <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
                             <i class="fs-4 bi-people text-white"></i> <span class="ms-1 d-none d-sm-inline text-white">Usuarios</span> </a>
@@ -64,7 +61,7 @@
                                 <a href="#" class="nav-link px-0 text-white" onclick="borrarUsuariosDiv()"> <span class="d-none d-sm-inline text-white">Borrar Usuarios</span><i class="bi bi-trash"></i></a>
                             </li>
                             <li>
-                                <a href="#" class="nav-link px-0 text-white" onclick="actualizarUsuariosDiv()"> <span class="d-none d-sm-inline text-white">Actualizar Permisos</span> 4</a>
+                                <a href="#" class="nav-link px-0 text-white" onclick="actualizarUsuariosDiv()"> <span class="d-none d-sm-inline text-white">Actualizar Permisos</span> <i class="bi bi-chevron-bar-contract"></i></a>
                             </li>
                         </ul>
                     </li>
@@ -97,6 +94,7 @@
                         <th>Descripcion</th>
                         <th>Visible</th>
                         <th>Precio</th>
+                        <th>Creador</th>
                     </tr>
                 <?php
                 while ($productos = $consulta->fetch(PDO::FETCH_BOTH /*FETCH_OBJ*/)){
@@ -106,6 +104,17 @@
                         <td><?php echo $productos['descripcion'];?></td>
                         <td><?php echo (($productos['activado'] == 1)?'Si':'No');?></td>
                         <td><?php echo $productos['precio'];?></td>
+                        <td>
+                            <?php 
+                                //Select efectuado para obtener el nombre a partir del idAdmin que tenemos
+                                $idCreador = $productos['idadmin'];
+                                $creador = $conn->prepare("SELECT usuario FROM clientes where id = ?;");
+                                $creador ->bindParam(1, $idCreador);
+                                $creador -> execute();
+                                $resultado = $creador->fetch();
+                                echo $resultado['usuario'];
+                            ?>
+                        </td>
                     </tr>
                 <?php
                 }
@@ -185,7 +194,7 @@
                 <h2 class="text-center">Administradores</h2>
                 <?php
                     include '../php/connect.php';
-                    $consulta = $conn->query("SELECT * FROM clientes;");
+                    $consulta = $conn->query("SELECT * FROM clientes where tipo = 'admin' or tipo = 'colaborador';");
                     ?>
                 <table class='table table-hover text-center'>
                     <tr>
@@ -253,7 +262,7 @@
                         <th>Tipo</th>
                         <th>Enviar</th>
                     </tr>
-                    <?php $mostrarDatos = $conn ->query("SELECT * FROM clientes;");
+                    <?php $mostrarDatos = $conn ->query("SELECT * FROM clientes WHERE tipo like 'admin' or tipo like 'colaborador';");
                         while ($mostrarActualizar = $mostrarDatos->fetch(PDO::FETCH_BOTH /*FETCH_OBJ*/)){  
                     ?>  
                         <form method="post" action="actualizarUsuario.php">

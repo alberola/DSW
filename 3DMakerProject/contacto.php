@@ -17,7 +17,7 @@
                       </div>
                     <div class="mb-3">
                         <h5><label for="descripcion" class="form-label">Descripción</label></h5>
-                        <textarea class="form-control" name="mensaje" placeholder="Comentanos tu propuesta aquí..." id="floatingTextarea2" style="height: 200px" autocomplete="off" required></textarea>
+                        <textarea class="form-control" name="mensaje" placeholder="Coméntanos tu propuesta aquí..." id="floatingTextarea2" style="height: 200px" autocomplete="off" required></textarea>
                     </div>
                     <button type="submit" class="btn btn-dark">Enviar</button>
                   </form>
