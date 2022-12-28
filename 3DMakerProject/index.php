@@ -12,38 +12,24 @@
         <div class="container mt-5 mb-3">
             <div class="row">
     <?php while ($registro = $peticion ->fetch(PDO::FETCH_BOTH /*FETCH_OBJ*/)) {?>
-                <div class="col-sm-12 col-md-4 mb-5 "id="producto" >
-                    <div class='card-group'>
+                <div class="col-sm-12 col-md-4 mb-5 carta-productos"id="producto<?php echo $auxCarousel;?>">
+                    
+                    <script>
+                        document.getElementById('producto<?php echo $auxCarousel;?>').addEventListener('click', function(){
+                            setTimeout(function () {
+                                window.location.href = 'php/products.php?id='+<?php echo $registro['idproducto']; ?>; 
+                            }, 100);
+                        });
+
+                    </script>
+
+                    <div class='card-group' >
                         <div class='card ms-4 text-center img-fluid shadow' > 
-                            <div id="carouselExampleControls<?php echo $auxCarousel;?>" class="carousel slide" data-bs-interval="false" data-ride="carousel" data-pause="hover">
-                                <div class="carousel-inner">
-                                    <div class="carousel-item active">
-                                        <img src="photo/<?php echo $registro['imagen']; ?>" class='card-img-top' alt="Imagen Producto" style="height: 18rem" id="imgCard">
-                                    </div>
-                                    <?php 
-                                        $aux = $registro['idproducto'];
-                                        $noRepeat = $registro['imagen'];
-                                        $imagenes = $conn->query("SELECT imagen FROM imagenesproductos WHERE (idproducto = $aux) and (imagen != '$noRepeat');");
-                                        while ($registroImagenes = $imagenes ->fetch(PDO::FETCH_BOTH /*FETCH_OBJ*/)) {
-                                    ?>
-                                    <div class="carousel-item">
-                                        <img src="photo/<?php echo $registroImagenes['imagen']; ?>" class='card-img-top' alt="Imagen Producto" style="height: 18rem" id="imgCard">
-                                    </div>
-                                    <?php } ?>
-                                </div>
-                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls<?php echo $auxCarousel;?>" data-bs-slide="prev">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Previous</span>
-                                </button>
-                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls<?php echo $auxCarousel;?>" data-bs-slide="next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Next</span>
-                                </button>
-                            </div>
+                            <img src="photo/<?php echo $registro['imagen']; ?>" class='card-img-top' alt="Imagen Producto" style="height: 18rem" id="imgCard">
                             <div class='card-body'>
                                 <h5 class="card-tittle"> <?php echo $registro["nombre"]; ?> </h5> 
                                 <p class='card-price'> <?php echo $registro["precio"]; ?> €</p>
-                                <a href='#' class='btn btn-dark'>Realizar Pedido</a>
+                                <a href='contacto.php' class='btn btn-dark'>Añadir al Carrito</a>
                             </div>
                         </div>
                     </div>

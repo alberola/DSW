@@ -11,9 +11,10 @@ hr{
     margin-left: 10%;
     margin-right: 10%;
 }
-#producto:hover{
+.carta-productos{
     transform: scale(1.05);
     transition: all 1.5s;
+    cursor:pointer;
 }
 #imgCard:hover{
     opacity: 0.8;
