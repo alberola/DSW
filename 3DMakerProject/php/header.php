@@ -43,9 +43,11 @@
                                         echo "<li><a class='dropdown-item' href='admin/admin.php'>Panel de Control</a></li>";
                                     } else if ($_SESSION['tipo'] == 'colaborador'){
                                         echo "<li><a class='dropdown-item' href='admin/colaborador.php'>Panel de Control</a></li>";
+                                    } else if ($_SESSION['tipo'] == 'cliente'){
+                                        echo "<li><a class='dropdown-item' href='admin/clientes.php'>Mis Pedidos</a></li>";
+                                        echo "<li><a class='dropdown-item' href='admin/clientes.php'>Mi Perfil</a></li>";
                                     }
                                 ?>
-                                <li><a class="dropdown-item" href="#">Perfil</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
@@ -55,9 +57,9 @@
                     <?php
                     }
                     ?>
-                <a href="index.php">
+                <a href="index.php" data-bs-toggle="modal" data-bs-target="#idModal">
                     <img src="img/carro.png" alt="" height="30px">
-                </a>
+                </a>2
             </div>
         </div>
     </nav>

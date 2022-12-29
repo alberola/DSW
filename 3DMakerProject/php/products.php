@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="../img/logo.png" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/products.css">
     <script src="https://kit.fontawesome.com/2693d594e9.js" crossorigin="anonymous"></script>
     <title>3DMakerProject</title>
 </head>
@@ -75,28 +75,37 @@
         $peticion= $conn->query("SELECT * FROM productos INNER JOIN imagenesproductos ON productos.id = imagenesproductos.idproducto and productos.id = $id;");
         $peticion2 = $conn->query("SELECT * FROM productos where id=$id;");
     ?>
-            <div class='container my-5'>
+            <div class='container' style="margin-top: 140px; margin-bottom: 140px;">
                 <div class='row'>
                     <div class='col-12'>
-                        <div class="card mb-3 shadow" style="height: 600px;" >
                             <div class="row g-0">
                                 <div class="col-md-6">
     <?php 
+        $auxVar = 0;
         while ($producto2 = $peticion2 ->fetch(PDO::FETCH_BOTH /*FETCH_OBJ*/)){ 
     ?>
                                     <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                                        <div class="carousel-inner">
+                                            
                                                                                    
     <?php
             while ($producto = $peticion ->fetch(PDO::FETCH_BOTH /*FETCH_OBJ*/)){
-    ?> 
-                                        <div class="carousel-inner">
-                                            <div class="carousel-item">
-                                                <img src="../img/facebook1.png" class="img-fluid" alt="Imagenes Producto">
-                                            </div>
-                                        </div>      
+                if ($auxVar == 0){
+                    echo '<div class="carousel-item active">';
+                        echo '<img src="../photo/' . $producto["imagen"] . '" class="rounded" alt="Imagenes Producto" style="height: 395px; width: 100%;">';
+                    echo '</div>';
+                } else {
+                    echo '<div class="carousel-item">';
+                        echo '<img src="../photo/' . $producto["imagen"] . '" alt="Imagenes Producto" style="height: 395px; width: 100%;">';
+                    echo '</div>';
+                }
+    ?>                                
+                                              
     <?php
             }               //TODA LA IDENTACIÓN REALIZADA EN HTML PARA NO ENCONTRAR ERRORES CON LAS POSIBLES ''
+            $auxVar++;
     ?>
+                                        </div>
                                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
                                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                             <span class="visually-hidden">Previous</span>
@@ -108,11 +117,11 @@
                                     </div> 
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="card-body">
-                                    <h3 class="card-title text-center"><?php echo $producto2["nombre"]; ?></h3>
-                                    <p class="card-text"> <?php echo $producto2["descripcion"]; ?></p>
-                                    <p class="card-price"><?php echo $producto2["precio"]; ?> €</p>
-                                    <a href='#' class='btn btn-dark'>Añadir al carrito</a>
+                                    <div class="card-body mx-5">
+                                    <h1 class="card-title text-center"><?php echo $producto2["nombre"]; ?></h1>
+                                    <p class="card-text "> <?php echo $producto2["descripcion"]; ?></p>
+                                    <h2 class="card-price text-center "><?php echo $producto2["precio"]; ?> €</h2>
+                                    <a href='#' class='btn btn-dark' data-bs-toggle="modal" data-bs-target="#idModal">Añadir al Carrito</a>
                                     <p class="card-text"><small class="text-muted">Recuerda que todos los precios de nuestra plataforma son orientativos</small></p>
                                     </div>
                                 </div>
@@ -121,13 +130,29 @@
     ?>                  
                             </div>
                         </div>
-                    </div>
                 </div>
             </div>
     <?php 
         include 'close.php';
     ?>
-
+    <!-- Modal -->
+    <div class="modal fade" id="idModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- FIN DEL BODY -->
 
     <hr>

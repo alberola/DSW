@@ -73,17 +73,13 @@
                         <span class="d-none d-sm-inline mx-1"><?php echo $_SESSION['usuario'];?></span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-                        <li><a class="dropdown-item" href="#">Perfil</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
                         <li><a class="dropdown-item" href="cerrarSesion.php">Cerrar Sesión</a></li>
                     </ul>
                 </div>
             </div>
         </div>
         <div class="col py-3 mx-5" id="prueba">
-            <div class="col-6 col-md-12 mt-5" id="mostrarProductos">
+            <div class="col-md-12 mt-5" id="mostrarProductos">
                 <?php
                     include '../php/connect.php';
                     $consulta = $conn->query("SELECT * FROM productos;");
