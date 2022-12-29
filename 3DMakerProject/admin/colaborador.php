@@ -106,8 +106,8 @@
                 <h5><label for="precio" class="form-label">Precio</label></h5>
                 <input type="number" name="precio" class="form-control"><br><br>
                 <h6><label for="visible" class="form-label">¿Quieres hacerlo visible?</label></h6>
-                <input type="radio" name="visible" value="1" checked class="form-check-input btn-outline-dark">Si
-                <input type="radio" name="visible" value="0" class="form-check-input">No
+                <input type="radio" name="visible" value="1" disabled class="form-check-input btn-outline-dark">Si
+                <input type="radio" name="visible" value="0" checked disabled class="form-check-input">No
                 <br><br>
                 <h5><label for="descripcion" class="form-label">Descripcion</label></h5>
                 <textarea name="descripcion" rows="5" cols="30" placeholder="Lorem Ipsum" class="form-control"></textarea> 

@@ -1,12 +1,12 @@
 *{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
-body{
+/* body{
     background-image: url(../img/superior.png),url(../img/inferior.png);
     background-position: top, bottom;
     background-size: contain,contain;
     background-repeat: no-repeat;
-}
+} */
 hr{
     margin-left: 10%;
     margin-right: 10%;

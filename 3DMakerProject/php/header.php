@@ -35,9 +35,9 @@
                         <div class="dropdown pb-4">
                             <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                                 <img src="img/usuario.png" alt="hugenerd" height="30" class="rounded-circle">
-                                <span class="d-none d-sm-inline mx-1"><?php echo $_SESSION['usuario'];?></span>
+                                <span class="d-none d-sm-inline mx-1 text-dark"><?php echo $_SESSION['usuario'];?></span>
                             </a>
-                            <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+                            <ul class="dropdown-menu dropdown-menu-dark text-small shadow text-dark" aria-labelledby="dropdownUser1">
                                 <?php
                                     if ($_SESSION['tipo'] == 'admin'){
                                         echo "<li><a class='dropdown-item' href='admin/admin.php'>Panel de Control</a></li>";

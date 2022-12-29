@@ -116,13 +116,13 @@
                                         </button>
                                     </div> 
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-6 ">
                                     <div class="card-body mx-5">
-                                    <h1 class="card-title text-center"><?php echo $producto2["nombre"]; ?></h1>
-                                    <p class="card-text "> <?php echo $producto2["descripcion"]; ?></p>
-                                    <h2 class="card-price text-center "><?php echo $producto2["precio"]; ?> €</h2>
-                                    <a href='#' class='btn btn-dark' data-bs-toggle="modal" data-bs-target="#idModal">Añadir al Carrito</a>
-                                    <p class="card-text"><small class="text-muted">Recuerda que todos los precios de nuestra plataforma son orientativos</small></p>
+                                        <h1 class="card-title text-left my-2"><?php echo $producto2["nombre"]; ?></h1>
+                                        <p class="card-text text-left my-2"> <?php echo $producto2["descripcion"]; ?></p>
+                                        <h2 class="card-price text-left my-2"><?php echo $producto2["precio"]; ?> €</h2>
+                                        <a href='#' class='btn btn-dark my-2' data-bs-toggle="modal" data-bs-target="#idModal">Añadir al Carrito</a>
+                                        <p class="card-text"><small class="text-muted">Recuerda que todos los precios de nuestra plataforma son orientativos</small></p>
                                     </div>
                                 </div>
     <?php 
